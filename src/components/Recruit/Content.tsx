@@ -14,8 +14,8 @@ const Content: React.FC<props> = ({ ott }) => {
         />
       </Head>
       <PostWrapper className="col-container">
-        <Post />
-        <Post />
+        <Post isWriter={false} />
+        <Post isWriter={true} />
       </PostWrapper>
     </Container>
   );

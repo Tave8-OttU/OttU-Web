@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import NickName from '../common/NickName';
 interface props {
   nickname: string;
   kakao_id: string;
@@ -7,7 +8,7 @@ interface props {
 const MemberList: React.FC<props> = ({ nickname, kakao_id }) => {
   return (
     <Container className="row-container">
-      <h4>{nickname}</h4>
+      <NickName nickname={nickname} />
       <IdBox className="row-container">
         <span>카카오 아이디</span>
         {kakao_id}
@@ -17,10 +18,7 @@ const MemberList: React.FC<props> = ({ nickname, kakao_id }) => {
 };
 export default MemberList;
 const Container = styled.div`
-  h4 {
-    margin: 0;
-    margin-right: 10px;
-  }
+  gap: 10px;
 `;
 const IdBox = styled.div`
   font-size: small;

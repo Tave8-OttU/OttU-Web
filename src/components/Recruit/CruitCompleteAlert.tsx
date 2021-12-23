@@ -28,7 +28,7 @@ const CruitCompleteAlert: React.FC<props> = ({ setIsOpen }) => {
           </Notice>
           <DateSelect />
         </DateInfo>
-        <BlueBtn>완료</BlueBtn>
+        <BlueBtn style={{ color: 'white' }}>완료</BlueBtn>
       </Container>
     </Modal>
   );
@@ -57,9 +57,6 @@ const Container = styled.div`
   left: 50%;
   gap: 25px;
   transform: translate(-50%, -50%);
-  button {
-    color: white;
-  }
 `;
 const ListContainer = styled.div`
   gap: 10px;

@@ -1,15 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { BlueBorderBtn } from '../common/Buttons';
+import { BlueBorderBtn, GrayBorderBtn } from '../common/Buttons';
 import DateBox from '../common/DateBox';
 import { BlueLabel } from '../common/Labels';
 import NickName from '../common/NickName';
 import CruitAlert from './CruitAlert';
 import JoinAlert from './JoinAlert';
-const Post: React.FC = () => {
-  const isWriter = true;
+interface props {
+  isWriter: boolean;
+}
+const Post: React.FC<props> = ({ isWriter }) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const oClickJoinHandler = () => {
+  const onClickJoinHandler = () => {
     setIsOpen(true);
   };
   return (
@@ -26,7 +28,15 @@ const Post: React.FC = () => {
         </Body>
         <Side className="col-container">
           <DateBox dateString={'2021.01.02'} />
-          <BlueBorderBtn onClick={oClickJoinHandler}>참여하기</BlueBorderBtn>
+          {isWriter ? (
+            <GrayBorderBtn onClick={onClickJoinHandler}>
+              참여 정보
+            </GrayBorderBtn>
+          ) : (
+            <BlueBorderBtn onClick={onClickJoinHandler}>
+              참여 하기
+            </BlueBorderBtn>
+          )}
         </Side>
       </Container>
       {isOpen &&
@@ -49,6 +59,7 @@ const Side = styled.div`
   flex: 1;
   gap: 30px;
   align-items: flex-end;
+  height: 100%;
 `;
 const Body = styled.div`
   gap: 30px;
