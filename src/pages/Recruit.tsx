@@ -10,7 +10,7 @@ const Recruit: React.FC = () => {
   const { ott } = useParams();
   const navigate = useNavigate();
   const onClickHandler = () => {
-    navigate('/addott');
+    navigate('/posting');
   };
   return (
     <Container>
