@@ -9,7 +9,7 @@ interface props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const CruitAlert: React.FC<props> = ({ setIsOpen }) => {
-  const [isCompletion, setIsCompletion] = React.useState(true);
+  const [isCompletion, setIsCompletion] = React.useState(false);
   return (
     <Modal setIsOpen={setIsOpen}>
       {isCompletion ? (

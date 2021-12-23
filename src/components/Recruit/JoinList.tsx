@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { BlueBtn, GrayBtn } from '../common/Buttons';
+import NickName from '../common/NickName';
 interface props {
   nickname: string;
   isJoin: boolean;
@@ -8,7 +9,7 @@ interface props {
 const JoinList: React.FC<props> = ({ nickname, isJoin }) => {
   return (
     <Container className="row-container">
-      <span>{nickname}</span>
+      <NickName nickname={nickname} />
       {isJoin ? <GrayBtn>수락취소</GrayBtn> : <BlueBtn>수락</BlueBtn>}
     </Container>
   );
@@ -20,7 +21,8 @@ const Container = styled.div`
   padding: 10px;
   border-radius: 5px;
   font-size: small;
-  button {
-    color: white;
+  color: white;
+  button:nth-child(1) {
+    color: black;
   }
 `;
