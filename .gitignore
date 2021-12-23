@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+.prettierrc
+react-app-env.d.ts
 # testing
 /coverage
 
