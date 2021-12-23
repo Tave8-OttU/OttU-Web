@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import DateBoxForm from '../components/AddOtt/DateBoxForm';
-import OttForm from '../components/AddOtt/OttForm';
-import PriceBoxForm from '../components/AddOtt/PriceBoxFrom';
+import DateBoxForm from '../components/Addott/DateBoxForm';
+import OttForm from '../components/Addott/OttForm';
+import PriceBoxForm from '../components/Addott/PriceBoxFrom';
 import { BlueBtn } from '../components/common/Buttons';
 import Head from '../components/common/Head';
 const AddOtt: React.FC = () => {

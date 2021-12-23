@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import OttForm from '../components/AddOtt/OttForm';
-import PriceBoxForm from '../components/AddOtt/PriceBoxFrom';
+import OttForm from '../components/Addott/OttForm';
+import PriceBoxForm from '../components/Addott/PriceBoxFrom';
 import ExplainBox from '../components/AddPost/ExplainBox';
 import { BlueBtn } from '../components/common/Buttons';
 import Head from '../components/common/Head';
