@@ -1,10 +1,18 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { Otts } from '../../assets/Objects/otts';
 interface props {
   ott?: string;
 }
 const OttContainer: React.FC<props> = ({ ott }) => {
+  const navigate = useNavigate();
+  const onClickHandler = (event: React.MouseEvent) => {
+    const {
+      currentTarget: { id },
+    } = event;
+    navigate(`/myott/${id}`);
+  };
   return (
     <Wrapper>
       <OttBox id={ott}>
@@ -16,7 +24,7 @@ const OttContainer: React.FC<props> = ({ ott }) => {
       {Otts.map(
         (it) =>
           ott != it && (
-            <OttBox id={it} isSmall>
+            <OttBox id={it} isSmall onClick={onClickHandler}>
               <img
                 src={require('../../assets/images/' + it + '.png').default}
                 width="150px"
