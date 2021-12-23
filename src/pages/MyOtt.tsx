@@ -4,8 +4,8 @@ import * as React from 'react';
 import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components';
 import Head from '../components/common/Head';
-import Content from '../components/MyOtt/Content';
-import OttContainer from '../components/MyOtt/OttContainer';
+import Content from '../components/Myott/Content';
+import OttContainer from '../components/Myott/OttContainer';
 const MyOtt: React.FC = () => {
   const { ott } = useParams();
   const navigate = useNavigate();
