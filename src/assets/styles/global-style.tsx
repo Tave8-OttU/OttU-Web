@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
       display: flex;
       flex-direction: column;
     }
-    input{
+    input[type=text]{
       all:unset;
     }
 `;
