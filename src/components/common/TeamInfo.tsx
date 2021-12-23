@@ -28,4 +28,5 @@ const Container = styled.div`
   border-radius: 10px;
   width: 250px;
   height: 30px;
+  box-shadow: 5px 5px 10px 5px #00000010;
 `;

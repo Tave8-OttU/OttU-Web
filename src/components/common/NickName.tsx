@@ -18,6 +18,6 @@ const NickName: React.FC<props> = ({ nickname }) => {
 };
 export default NickName;
 const Container = styled.button`
-  font-size: large;
+  font-size: medium;
   font-weight: bold;
 `;
