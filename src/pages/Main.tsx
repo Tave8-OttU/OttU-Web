@@ -6,12 +6,11 @@ import Head from '../components/common/Head';
 
 const Main: React.FC = () => {
   const navigate = useNavigate();
-  const onClickHandler = (event: React.MouseEvent) => {
+  const onClickHandler = (event: React.MouseEvent, myott: boolean) => {
     const {
       currentTarget: { id },
     } = event;
-    //navigate(`/myott/${id}`);
-    navigate(`/recruit/${id}`);
+    myott ? navigate(`/myott/${id}`) : navigate(`/recruit/${id}`);
   };
   return (
     <Container>
@@ -19,7 +18,11 @@ const Main: React.FC = () => {
       <Body>
         <Wrapper>
           {Otts.map((ott) => (
-            <OttContainer onClick={onClickHandler} id={ott}>
+            <OttContainer
+              onClick={(e) => onClickHandler(e, ott !== 'tving')}
+              id={ott}
+              isNone={ott === 'tving' && true}
+            >
               <img
                 src={require('../assets/images/' + ott + '.png').default}
                 width="200px"
@@ -50,7 +53,7 @@ const Wrapper = styled.div`
   grid-template-columns: repeat(3, 350px);
   gap: 50px;
 `;
-const OttContainer = styled.div`
+const OttContainer = styled.div<{ isNone?: boolean }>`
   background-color: white;
   width: 350px;
   height: 185px;
@@ -60,4 +63,8 @@ const OttContainer = styled.div`
   align-items: center;
   box-shadow: 20px 20px 20px 10px #00000025;
   cursor: pointer;
+  ${(props) =>
+    props.isNone &&
+    `
+  opacity:50%;`}
 `;
