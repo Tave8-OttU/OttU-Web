@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BlueBtn } from '../components/common/Buttons';
 import Head from '../components/Setting/Head';
 import SettingForm from '../components/Setting/SettingForm';
-
+import logo from '../assets/images/logo_s.png';
 const Setting: React.FC = () => {
   const [infoObj, setInfoObj] = React.useState({
     nickname: '',
@@ -28,7 +28,7 @@ const Setting: React.FC = () => {
         <TextWrapper>
           <h1>서비스 이용을 위한 기본 정보를 기입해주세요.</h1>
           <BlueBtn type="submit">완료</BlueBtn>
-          <img src="logo_s.png" />
+          <img src={logo} />
         </TextWrapper>
         <Wrapper className="container">
           <SettingForm
