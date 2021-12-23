@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AddOtt from '../pages/AddOtt';
+import AddPost from '../pages/AddPost';
 import Login from '../pages/Login';
 import Main from '../pages/Main';
 import MyOtt from '../pages/MyOtt';
@@ -20,6 +21,7 @@ const AppRouter: React.FC = () => {
           <Route path=":ott" element={<Recruit />} />
         </Route>
         <Route path="/addott" element={<AddOtt />} />
+        <Route path="/posting" element={<AddPost />} />
       </Routes>
     </Router>
   );
