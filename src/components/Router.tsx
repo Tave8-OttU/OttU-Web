@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { RootState } from '../modules';
 import AddOtt from '../pages/AddOtt';
 import AddPost from '../pages/AddPost';
 import EditProfile from '../pages/EditProfile';
@@ -9,12 +11,17 @@ import MyOtt from '../pages/MyOtt';
 import Recruit from '../pages/Recruit';
 import Setting from '../pages/Setting';
 const AppRouter: React.FC = () => {
+  const { isLoggedin, isSet } = useSelector((state: RootState) => state.user);
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/setting" element={<Setting />} />
-        <Route path="/main" element={<Main />} />
+        {!isLoggedin ? (
+          <Route path="/" element={<Login />} />
+        ) : !isSet ? (
+          <Route path="/setting" element={<Setting />} />
+        ) : (
+          <Route path="/main" element={<Main />} />
+        )}
         <Route path="/myott" element={<MyOtt />}>
           <Route path=":ott" element={<MyOtt />} />
         </Route>
