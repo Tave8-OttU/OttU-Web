@@ -6,6 +6,7 @@
 .pnp.js
 .prettierrc
 react-app-env.d.ts
+.env
 # testing
 /coverage
 
