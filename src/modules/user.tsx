@@ -2,13 +2,13 @@ const SET_LOGGED_INFO = 'user/SET_LOGGED_INFO'; // 로그인 정보 설정
 const SET_USER_INFO = 'user/SET_USER_INFO';
 
 interface userObj {
-  id: number;
+  userIdx: number;
   nickname: string;
 }
 const initialState = {
   userObj: {
     id: -1,
-    nickName: '',
+    nickname: '',
   },
   isLoggedin: false,
 };
