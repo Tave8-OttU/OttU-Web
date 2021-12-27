@@ -2,12 +2,16 @@ import * as React from 'react';
 import styled from 'styled-components';
 import CheckBoxForm from './CheckBoxForm';
 import KakaoIdForm from './KakaoIdForm';
-import NickNameForm, { infoFormprops } from './NickNameForm';
-interface Formprops extends infoFormprops {
+import NickNameForm from './NickNameForm';
+interface Formprops {
+  infoObj: {
+    nickname: string;
+    kakaotalk_id: string;
+  };
+  onChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
   interestArr: string[];
   setInterestArr: React.Dispatch<React.SetStateAction<string[]>>;
 }
-
 const SettingForm: React.FC<Formprops> = ({
   infoObj,
   onChangeHandler,
@@ -16,8 +20,14 @@ const SettingForm: React.FC<Formprops> = ({
 }) => {
   return (
     <Container className="col-container">
-      <NickNameForm infoObj={infoObj} onChangeHandler={onChangeHandler} />
-      <KakaoIdForm infoObj={infoObj} onChangeHandler={onChangeHandler} />
+      <NickNameForm
+        nickname={infoObj.nickname}
+        onChangeHandler={onChangeHandler}
+      />
+      <KakaoIdForm
+        kakaotalk_id={infoObj.kakaotalk_id}
+        onChangeHandler={onChangeHandler}
+      />
       <CheckBoxForm interestArr={interestArr} setInterestArr={setInterestArr} />
     </Container>
   );

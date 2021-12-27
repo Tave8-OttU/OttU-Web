@@ -1,14 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Gage from './Gage';
 import { BorderGrayLabel } from './Labels';
-interface props {}
-const GenreBox: React.FC<props> = ({}) => {
+interface props {
+  genres: string[];
+}
+const GenreBox: React.FC<props> = ({ genres }) => {
   return (
     <Container className="col-container">
       <span>관심 장르</span>
       <Wrapper className="row-container">
-        <BorderGrayLabel>드라마</BorderGrayLabel>
+        {genres.map((genre) => (
+          <BorderGrayLabel>{genre}</BorderGrayLabel>
+        ))}
       </Wrapper>
     </Container>
   );
