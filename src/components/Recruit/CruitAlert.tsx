@@ -4,7 +4,7 @@ import { GrayBorderBtn, RedBorderBtn } from '../common/Buttons';
 import Modal from '../common/Modal';
 import CruitCompleteAlert from './CruitCompleteAlert';
 import JoinList from './JoinList';
-import { Count } from './Post';
+import { Count } from '../common/Post';
 interface props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
