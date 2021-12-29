@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { Otts } from '../assets/Objects/otts';
 import Head from '../components/common/Head';
+import OttImg from '../components/common/OttImg';
 
 const Main: React.FC = () => {
   const navigate = useNavigate();
@@ -23,10 +24,7 @@ const Main: React.FC = () => {
               id={ott}
               isNone={ott === 'tving' && true}
             >
-              <img
-                src={require('../assets/images/' + ott + '.png').default}
-                width="200px"
-              />
+              <OttImg ott={ott} width="200px" />
             </OttContainer>
           ))}
         </Wrapper>

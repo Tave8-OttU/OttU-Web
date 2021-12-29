@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { Otts } from '../../assets/Objects/otts';
+import OttImg from '../common/OttImg';
 interface props {
   ott?: string;
 }
@@ -16,19 +17,13 @@ const OttContainer: React.FC<props> = ({ ott }) => {
   return (
     <Wrapper>
       <OttBox id={ott}>
-        <img
-          src={require('../../assets/images/' + ott + '.png').default}
-          width="200px"
-        />
+        <OttImg ott={ott ? ott : ''} width="200px" />
       </OttBox>
       {Otts.map(
         (it) =>
           ott != it && (
             <OttBox id={it} isSmall onClick={onClickHandler}>
-              <img
-                src={require('../../assets/images/' + it + '.png').default}
-                width="150px"
-              />
+              <OttImg ott={it} width="150px" />
             </OttBox>
           ),
       )}

@@ -1,24 +1,30 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { BlueBorderBtn, GrayBorderBtn } from '../common/Buttons';
-import DateBox from '../common/DateBox';
-import { BlueLabel } from '../common/Labels';
-import NickName from '../common/NickName';
-import CruitAlert from './CruitAlert';
-import JoinAlert from './JoinAlert';
+import BtnGroup from '../Recruit/BtnGroup';
+import CruitAlert from '../Recruit/CruitAlert';
+import JoinAlert from '../Recruit/JoinAlert';
+import DateBox from './DateBox';
+import { BlueLabel } from './Labels';
+import NickName from './NickName';
+import OttImg from './OttImg';
 interface props {
   isWriter: boolean;
+  isMine?: boolean;
 }
-const Post: React.FC<props> = ({ isWriter }) => {
+const Post: React.FC<props> = ({ isWriter, isMine }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const onClickJoinHandler = () => {
     setIsOpen(true);
   };
   return (
     <>
-      <Container className="row-container">
+      <Container className="row-container" isWhite={isMine}>
         <Body className="col-container">
-          <NickName nickname={'닉네임'} />
+          {isMine ? (
+            <OttImg ott="netflix" width="120px" />
+          ) : (
+            <NickName nickname={'닉네임'} />
+          )}
           <Wrapper>
             <BlueLabel>모집 중</BlueLabel>
             <Count>
@@ -28,15 +34,7 @@ const Post: React.FC<props> = ({ isWriter }) => {
         </Body>
         <Side className="col-container">
           <DateBox dateString={'2021.01.02'} />
-          {isWriter ? (
-            <GrayBorderBtn onClick={onClickJoinHandler}>
-              참여 정보
-            </GrayBorderBtn>
-          ) : (
-            <BlueBorderBtn onClick={onClickJoinHandler}>
-              참여 하기
-            </BlueBorderBtn>
-          )}
+          <BtnGroup isWriter={isWriter} onClickHandler={onClickJoinHandler} />
         </Side>
       </Container>
       {isOpen &&
@@ -64,10 +62,16 @@ const Side = styled.div`
 const Body = styled.div`
   gap: 30px;
 `;
-const Container = styled.div`
+const Container = styled.div<{ isWhite?: boolean }>`
   background-color: #00000030;
   font-size: small;
   padding: 20px;
+  ${(props) =>
+    props.isWhite &&
+    `
+    background-color: #ffffff;
+  color:#6D6D6D;
+  `}
 `;
 export const Count = styled.span`
   font-size: medium;

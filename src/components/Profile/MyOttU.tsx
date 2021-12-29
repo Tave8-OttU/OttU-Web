@@ -6,8 +6,9 @@ const MyOttU: React.FC = () => {
     <Container>
       <h3>나의 OttU</h3>
       <Menu className="col-container">
-        <Link to="">내가 작성한 모집글 </Link>
-        <Link to="">내가 이용하는 OTT 서비스 </Link>
+        <Link to={`/edit/profile/`}>내가 작성한 모집글 </Link>
+        {/* 
+        <Link to="">내가 이용하는 OTT 서비스 </Link> */}
       </Menu>
     </Container>
   );
