@@ -12,9 +12,10 @@ const GlobalStyle = createGlobalStyle`
       margin: 0;
       background-color:#343434;
       color:white;
-    background-image: url(${bg});
-    background-position: center bottom;
-    background-repeat: no-repeat;
+      background-image: url(${bg});
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      min-height:100vh;
     }
     a{
       all: unset;
