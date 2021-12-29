@@ -32,7 +32,7 @@ const Login: React.FC = () => {
       }),
     );
     axios.defaults.headers.common['Authorization'] = `${jwt}`;
-    user.nickname && dispatch(setSettingInfo(true));
+    user.nickname ? dispatch(setSettingInfo(true)) : navigate('/setting');
   };
   return (
     <Container>
