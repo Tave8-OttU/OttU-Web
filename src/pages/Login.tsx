@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
@@ -31,9 +30,9 @@ const Login: React.FC = () => {
         access_token: jwt,
       }),
     );
-    axios.defaults.headers.common['Authorization'] = `${jwt}`;
     user.nickname ? dispatch(setSettingInfo(true)) : navigate('/setting');
   };
+
   return (
     <Container>
       <Head />

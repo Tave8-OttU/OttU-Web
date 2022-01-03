@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 interface props {
   type: string;
-  price: string;
+  price: number;
 }
 const PriceInfo: React.FC<props> = ({ type, price }) => {
   return (

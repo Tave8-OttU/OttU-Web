@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { Otts } from '../assets/Objects/otts';
 import OttForm from '../components/Addott/OttForm';
-import PriceBoxForm from '../components/Addott/PriceBoxFrom';
+import PriceBoxForm from '../components/Addott/PriceBoxForm';
 import ExplainBox from '../components/AddPost/ExplainBox';
 import { BlueBtn } from '../components/common/Buttons';
 import Head from '../components/common/Head';

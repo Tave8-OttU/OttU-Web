@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { BlueLabel } from './Labels';
 interface props {
-  people: string;
-  price: string;
+  people: number;
+  price: number;
 }
 const TeamInfo: React.FC<props> = ({ people, price }) => {
   return (
