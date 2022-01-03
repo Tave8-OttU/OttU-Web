@@ -8,10 +8,12 @@ import EditProfile from '../pages/EditProfile';
 import Login from '../pages/Login';
 import Main from '../pages/Main';
 import MyOtt from '../pages/MyOtt';
+import MyPost from '../pages/MyPost';
 import Recruit from '../pages/Recruit';
 import Setting from '../pages/Setting';
 const AppRouter: React.FC = () => {
   const { isLoggedin, isSet } = useSelector((state: RootState) => state.user);
+
   return (
     <Router>
       <Routes>
@@ -33,6 +35,7 @@ const AppRouter: React.FC = () => {
         <Route path="/profile/edit" element={<EditProfile />}>
           <Route path=":type" element={<EditProfile />} />
         </Route>
+        <Route path="/profile/mypost" element={<MyPost />} />
       </Routes>
     </Router>
   );

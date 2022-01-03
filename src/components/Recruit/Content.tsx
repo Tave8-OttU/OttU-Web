@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Post from './Post';
+import OttImg from '../common/OttImg';
+import Post from '../common/Post';
 interface props {
   ott?: string;
 }
@@ -8,10 +9,7 @@ const Content: React.FC<props> = ({ ott }) => {
   return (
     <Container className="col-container">
       <Head>
-        <img
-          src={require('../../assets/images/' + ott + '.png').default}
-          width="100px"
-        />
+        <OttImg ott={ott ? ott : ''} width="100px" />
       </Head>
       <PostWrapper className="col-container">
         <Post isWriter={false} />

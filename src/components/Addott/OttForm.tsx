@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Otts } from '../../assets/Objects/otts';
+import OttImg from '../common/OttImg';
 const OttForm: React.FC = () => {
   return (
     <Container>
@@ -8,10 +9,7 @@ const OttForm: React.FC = () => {
       <OttWrapper>
         {Otts.map((ott) => (
           <OttContainer>
-            <img
-              src={require('../../assets/images/' + ott + '.png').default}
-              width="50%"
-            />
+            <OttImg ott={ott} width="50%" />
           </OttContainer>
         ))}
       </OttWrapper>
