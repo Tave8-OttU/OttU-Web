@@ -8,6 +8,7 @@ interface props {
   };
   onClickHandler: (event: React.MouseEvent, type: string) => void;
 }
+
 const PriceBoxForm: React.FC<props> = ({ postObj, onClickHandler }) => {
   return (
     <Container>
