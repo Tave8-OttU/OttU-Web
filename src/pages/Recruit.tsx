@@ -4,14 +4,15 @@ import * as React from 'react';
 import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components';
 import Head from '../components/common/Head';
-import OttContainer from '../components/Recruit/OttContainer';
 import Content from '../components/Recruit/Content';
+import OttContainer from '../components/Recruit/OttContainer';
 const Recruit: React.FC = () => {
   const { ott } = useParams();
   const navigate = useNavigate();
   const onClickHandler = () => {
     navigate('/posting');
   };
+
   return (
     <Container>
       <Head />
@@ -36,7 +37,7 @@ const Body = styled.div`
 `;
 const Label = styled.div`
   background-color: #00000020;
-  margin: 50px;
+  margin: 30px 50px;
   padding: 30px;
   border-radius: 10px;
 `;
