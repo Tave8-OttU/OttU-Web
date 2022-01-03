@@ -2,23 +2,25 @@ import * as React from 'react';
 import styled from 'styled-components';
 import DateBoxForm from '../components/Addott/DateBoxForm';
 import OttForm from '../components/Addott/OttForm';
-import PriceBoxForm from '../components/Addott/PriceBoxFrom';
+import PriceBoxForm from '../components/Addott/PriceBoxForm';
 import { BlueBtn } from '../components/common/Buttons';
 import Head from '../components/common/Head';
 const AddOtt: React.FC = () => {
+  const [platform, setPlatform] = React.useState(-1);
   return (
     <Container>
+      {/* 
       <Head />
       <Body>
         <Wrapper className="col-container">
-          <OttForm />
+          <OttForm platform={platform} setPlatform={setPlatform} />
         </Wrapper>
         <Wrapper className="col-container">
           <BlueBtn>추가</BlueBtn>
-          <PriceBoxForm />
+          <PriceBoxForm platform={platform} />
           <DateBoxForm />
         </Wrapper>
-      </Body>
+      </Body> */}
     </Container>
   );
 };
