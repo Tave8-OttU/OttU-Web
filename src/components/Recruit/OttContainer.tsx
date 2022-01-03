@@ -8,18 +8,18 @@ interface props {
 }
 const OttContainer: React.FC<props> = ({ ott }) => {
   const navigate = useNavigate();
-  const onClickHandler = (event: React.MouseEvent) => {
+  const onClickHandler = (event: React.MouseEvent, ott: string) => {
     const {
       currentTarget: { id },
     } = event;
-    navigate(`/recruit/${id}`);
+    navigate(`/recruit/${ott}?idx=${parseInt(id) + 1}`);
   };
   return (
     <Wrapper>
       {Otts.map(
-        (it) =>
+        (it, idx) =>
           ott != it && (
-            <OttBox id={it} onClick={onClickHandler}>
+            <OttBox id={idx + ''} onClick={(e) => onClickHandler(e, it)}>
               <OttImg ott={it} width="100px" />
             </OttBox>
           ),
