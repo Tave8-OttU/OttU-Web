@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
 import { BlueBtn } from '../common/Buttons';
@@ -6,8 +7,20 @@ import Modal from '../common/Modal';
 import MemberList from './MemberList';
 interface props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  rid: number;
 }
-const CruitCompleteAlert: React.FC<props> = ({ setIsOpen }) => {
+interface memeber {
+  userIdx: number;
+  kakaotalkId: string;
+  nickname: string;
+}
+const CruitCompleteAlert: React.FC<props> = ({ setIsOpen, rid }) => {
+  const [memberList, setMemberList] = React.useState<memeber[]>([]);
+  React.useEffect(() => {
+    axios.get(`/recruit/${rid}/members`).then((res) => {
+      setMemberList(res.data.members);
+    });
+  }, []);
   return (
     <Modal setIsOpen={setIsOpen}>
       <Container>
@@ -15,9 +28,9 @@ const CruitCompleteAlert: React.FC<props> = ({ setIsOpen }) => {
           <h2>팀원 정보</h2>
         </Head>
         <ListContainer className="col-container">
-          <MemberList nickname="닉네임" kakao_id={'runru'} />
-          <MemberList nickname="닉네임" kakao_id={'runru'} />
-          <MemberList nickname="닉네임" kakao_id={'runru'} />
+          {memberList.map((mem) => (
+            <MemberList nickname={mem.nickname} kakao_id={mem.kakaotalkId} />
+          ))}
         </ListContainer>
         <DateInfo className="col-container">
           <h3>

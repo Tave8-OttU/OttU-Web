@@ -1,15 +1,41 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router';
 import styled from 'styled-components';
-import logo from '../assets/images/logo_s.png';
 import kakao from '../assets/images/kakao_login.png';
+import logo from '../assets/images/logo_s.png';
 import randing from '../assets/images/randing.png';
+import Head from '../components/Setting/Head';
+import { setLoggedInfo, setSettingInfo } from '../modules/user';
+import { kakaoLoginHandler } from '../utils/KakaoLogin';
 const Login: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const kauthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_REST_KEY}&redirect_uri=http://localhost:3000/&response_type=code`;
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const code = params.get('code');
+  React.useEffect(() => {
+    if (code) {
+      kakaoLoginHandler(code).then((res: any) => {
+        loginInfoHandler(res.data.user, res.data.jwt);
+      });
+    }
+  }, []);
+  const loginInfoHandler = (user: any, jwt: string) => {
+    dispatch(setLoggedInfo(user, true));
+    window.localStorage.setItem(
+      'token',
+      JSON.stringify({
+        access_token: jwt,
+      }),
+    );
+    user.nickname ? dispatch(setSettingInfo(true)) : navigate('/setting');
+  };
+
   return (
     <Container>
-      <Header>
-        <img src={logo} />
-      </Header>
+      <Head />
       <Body className="row-container">
         <Wrapper className="container">
           <img src={randing} width="70%" />
@@ -26,9 +52,9 @@ const Login: React.FC = () => {
               <br />
               <span>오뜨U</span>를 이용해보세요.
             </p>
-            <Link to="">
+            <a href={kauthUrl}>
               <img width="200px" src={kakao} />
-            </Link>
+            </a>
           </LoginView>
         </Wrapper>
       </Body>
@@ -36,14 +62,6 @@ const Login: React.FC = () => {
   );
 };
 export default Login;
-
-const Header = styled.header`
-  background-color: #00000050;
-  img {
-    width: 80px;
-    padding: 10px 20px;
-  }
-`;
 const Container = styled.div`
   background-image: url('bg.png');
   background-position: center bottom;

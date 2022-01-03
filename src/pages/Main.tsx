@@ -3,30 +3,34 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { Otts } from '../assets/Objects/otts';
 import Head from '../components/common/Head';
+import OttImg from '../components/common/OttImg';
 
 const Main: React.FC = () => {
   const navigate = useNavigate();
-  const onClickHandler = (event: React.MouseEvent, myott: boolean) => {
+  const onClickHandler = (
+    event: React.MouseEvent,
+    myott: boolean,
+    ott: string,
+  ) => {
     const {
       currentTarget: { id },
     } = event;
-    myott ? navigate(`/myott/${id}`) : navigate(`/recruit/${id}`);
+    myott
+      ? navigate(`/myott/${id}`)
+      : navigate(`/recruit/${ott}?idx=${parseInt(id) + 1}`);
   };
   return (
     <Container>
       <Head />
       <Body>
         <Wrapper>
-          {Otts.map((ott) => (
+          {Otts.map((ott, idx) => (
             <OttContainer
-              onClick={(e) => onClickHandler(e, ott !== 'tving')}
-              id={ott}
+              onClick={(e) => onClickHandler(e, ott !== 'tving', ott)}
+              id={idx + ''}
               isNone={ott === 'tving' && true}
             >
-              <img
-                src={require('../assets/images/' + ott + '.png').default}
-                width="200px"
-              />
+              <OttImg ott={ott} width="200px" />
             </OttContainer>
           ))}
         </Wrapper>

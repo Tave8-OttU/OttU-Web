@@ -6,9 +6,9 @@ const MyInfo: React.FC = () => {
     <Container>
       <h3>내 정보</h3>
       <Menu className="col-container">
-        <Link to="">닉네임 변경 </Link>
-        <Link to="">관심 장르 변경 </Link>
-        <Link to="">카카오 아이디 변경 </Link>
+        <Link to={`/profile/edit/nickname`}>닉네임 변경 </Link>
+        <Link to={`/profile/edit/genre`}>관심 장르 변경 </Link>
+        <Link to={`/profile/edit/kakaoId`}>카카오 아이디 변경 </Link>
       </Menu>
     </Container>
   );

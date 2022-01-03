@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
 import { BlueBtn, GrayBtn } from '../common/Buttons';
@@ -7,10 +8,21 @@ interface props {
   isJoin: boolean;
 }
 const JoinList: React.FC<props> = ({ nickname, isJoin }) => {
+  const onClickHandler = () => {
+    isJoin
+      ? axios.patch(`/recruit/waitlist/cancel`)
+      : axios.patch(`/recruit/waitlist/accept`).then((res) => {
+          res.status === 400 && alert('정원 이하의 참여자만 수락 가능합니다.');
+        });
+  };
   return (
     <Container className="row-container">
       <NickName nickname={nickname} />
-      {isJoin ? <GrayBtn>수락취소</GrayBtn> : <BlueBtn>수락</BlueBtn>}
+      {isJoin ? (
+        <GrayBtn onClick={onClickHandler}>수락취소</GrayBtn>
+      ) : (
+        <BlueBtn onClick={onClickHandler}>수락</BlueBtn>
+      )}
     </Container>
   );
 };

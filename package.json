@@ -2,6 +2,7 @@
   "name": "ottu",
   "version": "0.1.0",
   "private": true,
+  "proxy":"http://ec2-3-36-111-12.ap-northeast-2.compute.amazonaws.com/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -21,6 +22,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
+    "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.3",
     "styled-normalize": "^8.0.7",
