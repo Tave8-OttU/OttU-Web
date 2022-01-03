@@ -1,22 +1,29 @@
 import * as React from 'react';
 import styled from 'styled-components';
-const PriceBoxForm: React.FC = () => {
+import { Prices } from '../../assets/Objects/otts';
+interface props {
+  postObj: {
+    platformIdx: number;
+    headCount: number;
+  };
+  onClickHandler: (event: React.MouseEvent, type: string) => void;
+}
+const PriceBoxForm: React.FC<props> = ({ postObj, onClickHandler }) => {
   return (
     <Container>
       <span>요금제 선택</span>
       <Wrapper className="row-container">
-        <Box>
-          <span>베이식</span>
-          <span>14,900원</span>
-        </Box>
-        <Box>
-          <span>베이식</span>
-          <span>14,900원</span>
-        </Box>
-        <Box>
-          <span>베이식</span>
-          <span>14,900원</span>
-        </Box>
+        {postObj.platformIdx != -1 &&
+          Prices[postObj.platformIdx].map((p) => (
+            <Box
+              id={p.headCount + ''}
+              onClick={(e) => onClickHandler(e, 'headCount')}
+              isClicked={p.headCount === postObj.headCount}
+            >
+              <span>{p.title}</span>
+              <span>{p.price}원</span>
+            </Box>
+          ))}
       </Wrapper>
     </Container>
   );
@@ -30,8 +37,9 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   gap: 20px;
+  justify-content: center;
 `;
-const Box = styled.div`
+const Box = styled.div<{ isClicked: boolean }>`
   background-color: #00000030;
   display: flex;
   flex-direction: column;
@@ -42,4 +50,11 @@ const Box = styled.div`
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
+  cursor: pointer;
+  ${(props) =>
+    props.isClicked &&
+    `
+  background-color: #ffffff30;
+
+  `};
 `;
