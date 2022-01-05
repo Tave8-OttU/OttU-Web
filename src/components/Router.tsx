@@ -20,9 +20,9 @@ const AppRouter: React.FC = () => {
         {!isLoggedin ? (
           <Route path="/" element={<Login />} />
         ) : !isSet ? (
-          <Route path="/setting" element={<Setting />} />
+          <Route path="/" element={<Setting />} />
         ) : (
-          <Route path="/main" element={<Main />} />
+          <Route path="/" element={<Main />} />
         )}
         <Route path="/myott" element={<MyOtt />}>
           <Route path=":ott" element={<MyOtt />} />
