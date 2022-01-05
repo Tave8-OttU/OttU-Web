@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import AppRouter from './Router';
 
 const App = () => {
-  const token = JSON.parse(localStorage.getItem('token') || '');
+  const token = JSON.parse(localStorage.getItem('token') + '');
   useEffect(() => {
     axios.defaults.headers.common['authorization'] = `${token?.access_token}`;
   }, [token]);
