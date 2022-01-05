@@ -13,7 +13,7 @@ const Head: React.FC = () => {
   return (
     <>
       <Header className="row-container">
-        <Link to="/main">
+        <Link to="/">
           <img src={logo} />
         </Link>
         <SideWrapper className="row-container">
