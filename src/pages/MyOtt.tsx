@@ -1,59 +1,64 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import * as React from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import styled from 'styled-components';
 import Head from '../components/common/Head';
+import WriteBtn from '../components/common/WriteBtn';
 import Content from '../components/Myott/Content';
 import OttContainer from '../components/Myott/OttContainer';
+import { RootState } from '../modules';
+
 const MyOtt: React.FC = () => {
-  const { ott } = useParams();
-  const navigate = useNavigate();
-  const onClickHandler = () => {
-    navigate('/addott');
-  };
-  return (
-    <Container>
-      <Head />
-      <Label>나의 OTT</Label>
-      <Body>
-        <OttContainer ott={ott} />
-        <Content />
-      </Body>
-      <WriteBtn onClick={onClickHandler}>
-        <FontAwesomeIcon icon={faPlus} />
-      </WriteBtn>
-    </Container>
-  );
+	const { ott } = useParams();
+	const { userObj } = useSelector((state: RootState) => state.user);
+
+	const [ottList, setOttList] = React.useState<ott[]>([]);
+	React.useEffect(() => {
+		axios.get(`/user/${userObj.userIdx}/ott`).then((res) => {
+			setOttList(res.data.ottlist);
+			res.data.ottlist.map(
+				(it: ott) => it.platform.platformName === ott && setOttObj(it)
+			);
+		});
+	}, []);
+
+	const [ottObj, setOttObj] = React.useState<ott | null>();
+	return (
+		<Container>
+			<Head />
+			<Label>나의 OTT</Label>
+			<Body>
+				<OttContainer ott={ott} ottList={ottList} />
+				{ottObj && <Content ottObj={ottObj} />}
+			</Body>
+			<WriteBtn isAddOtt={true} />
+		</Container>
+	);
 };
 export default MyOtt;
 const Container = styled.div``;
 const Body = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 0px 50px;
-  gap: 50px;
+	display: flex;
+	flex-direction: row;
+	padding: 0px 50px;
+	gap: 50px;
 `;
 const Label = styled.div`
-  background-color: #00000020;
-  margin: 50px;
-  padding: 30px;
-  border-radius: 10px;
-  color: #45c7ff;
+	background-color: #00000020;
+	margin: 50px;
+	padding: 30px;
+	border-radius: 10px;
+	color: #45c7ff;
 `;
-const WriteBtn = styled.button`
-  position: fixed;
-  background-color: #5d5d5d;
-  bottom: 50px;
-  right: 50px;
-  font-size: 25px;
-  color: #45c7ff;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  padding: 10px;
-  box-shadow: 20px 20px 20px 10px #00000025;
-`;
+
+export interface ott {
+	teamIdx: number;
+	platform: {
+		platformIdx: number;
+		platformName: string;
+	};
+	headcount: number;
+	paymentDay: number;
+	paymentDate: Date;
+}
