@@ -9,7 +9,7 @@ const OttImg: React.FC<props> = ({ ott, width, height, isWhite }) => {
 	return (
 		<img
 			src={
-				isWhite && (ott === 'disney' || ott === 'wavve')
+				isWhite && (ott === 'Disney+' || ott === 'Wavve')
 					? require('../../assets/images/' + ott + '_white.png').default
 					: require('../../assets/images/' + ott + '.png').default
 			}
