@@ -2,12 +2,12 @@ import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
 import { BlueBtn, GrayBtn } from '../../common/Buttons';
-import NickName from '../../common/NickName';
+import NickName, { userType } from '../../common/NickName';
 interface props {
-	nickname: string;
+	userObj: userType;
 	isJoin: boolean;
 }
-const JoinList: React.FC<props> = ({ nickname, isJoin }) => {
+const JoinList: React.FC<props> = ({ userObj, isJoin }) => {
 	const onClickHandler = () => {
 		isJoin
 			? axios.patch(`/recruit/waitlist/cancel`)
@@ -17,7 +17,7 @@ const JoinList: React.FC<props> = ({ nickname, isJoin }) => {
 	};
 	return (
 		<Container className="row-container">
-			<NickName nickname={nickname} />
+			<NickName userObj={userObj} />
 			{isJoin ? (
 				<GrayBtn onClick={onClickHandler}>수락취소</GrayBtn>
 			) : (

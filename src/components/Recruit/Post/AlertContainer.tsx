@@ -3,17 +3,17 @@ import { recruitPost } from '../Content';
 import CruitAlert from '../CruitAlert/CruitAlert';
 import JoinAlert from '../JoinAlert/JoinAlert';
 interface props {
-	postObj: recruitPost;
+	idx: number;
 	isWriter: boolean;
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const AlertContainer: React.FC<props> = ({ postObj, isWriter, setIsOpen }) => {
+const AlertContainer: React.FC<props> = ({ idx, isWriter, setIsOpen }) => {
 	return (
 		<>
 			{isWriter ? (
-				<CruitAlert postObj={postObj} setIsOpen={setIsOpen} />
+				<CruitAlert idx={idx} setIsOpen={setIsOpen} />
 			) : (
-				<JoinAlert postObj={postObj} setIsOpen={setIsOpen} />
+				<JoinAlert idx={idx} setIsOpen={setIsOpen} />
 			)}
 		</>
 	);

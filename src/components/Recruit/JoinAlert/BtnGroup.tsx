@@ -1,8 +1,9 @@
 import axios from 'axios';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../../modules';
+import { participate } from '../../../modules/recruitList';
 import { GrayBorderBtn, RedBorderBtn } from '../../common/Buttons';
 import { recruitPost } from '../Content';
 interface props {
@@ -10,12 +11,20 @@ interface props {
 	postObj: recruitPost;
 }
 const BtnGroup: React.FC<props> = ({ setIsOpen, postObj }) => {
-	const { userObj } = useSelector((state: RootState) => state.user.userObj);
+	const { userObj } = useSelector((state: RootState) => state.user);
+	const dispatch = useDispatch();
 	const onClickHandler = () => {
-		axios.post(`/recruit/participate`, {
-			recruitIdx: postObj.recruitIdx,
-			userIdx: userObj.userIdx,
-		});
+		axios
+			.post(`/recruit/participate`, {
+				recruitIdx: postObj.recruitIdx,
+				userIdx: userObj.userIdx,
+			})
+			.then((res) => {
+				if (res.status === 200) {
+					setIsOpen(false);
+					dispatch(participate(postObj.recruitIdx));
+				}
+			});
 	};
 	return (
 		<Container className="row-container">

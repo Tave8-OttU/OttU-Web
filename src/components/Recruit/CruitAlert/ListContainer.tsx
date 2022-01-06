@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
+import { userType } from '../../common/NickName';
 import { recruitPost } from '../Content';
 import JoinList from './JoinList';
 interface props {
@@ -16,18 +17,15 @@ const ListContainer: React.FC<props> = ({ postObj }) => {
 	return (
 		<Container className="col-container">
 			{waitList.map((wait: waitList) => (
-				<JoinList nickname={wait.user.nickname} isJoin={wait.isAccepted} />
+				<JoinList userObj={wait.user} isJoin={wait.isAccepted} />
 			))}
 		</Container>
 	);
 };
 export default ListContainer;
-interface waitList {
+export interface waitList {
 	waitlistIdx: number;
-	user: {
-		userIdx: number;
-		nickname: string;
-	};
+	user: userType;
 	isAccepted: boolean;
 }
 const Container = styled.div`

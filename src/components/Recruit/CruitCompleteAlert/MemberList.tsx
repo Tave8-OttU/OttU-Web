@@ -1,17 +1,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import NickName from '../../common/NickName';
+import NickName, { userType } from '../../common/NickName';
 interface props {
-	nickname: string;
-	kakao_id: string;
+	userObj: userType;
 }
-const MemberList: React.FC<props> = ({ nickname, kakao_id }) => {
+const MemberList: React.FC<props> = ({ userObj }) => {
 	return (
 		<Container className="row-container">
-			<NickName nickname={nickname} />
+			<NickName userObj={userObj} />
 			<IdBox className="row-container">
 				<span>카카오 아이디</span>
-				{kakao_id}
+				{userObj.kakaotalkId}
 			</IdBox>
 		</Container>
 	);

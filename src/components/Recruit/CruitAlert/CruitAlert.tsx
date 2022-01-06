@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../../modules';
 import Modal from '../../common/Modal';
 import { recruitPost } from '../Content';
 import CruitCompleteAlert from '../CruitCompleteAlert/CruitCompleteAlert';
@@ -8,11 +10,13 @@ import Head from './Head';
 import ListContainer from './ListContainer';
 interface props {
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-	postObj: recruitPost;
+	idx: number;
 }
-const CruitAlert: React.FC<props> = ({ postObj, setIsOpen }) => {
+const CruitAlert: React.FC<props> = ({ setIsOpen, idx }) => {
+	const { postList } = useSelector((state: RootState) => state.recruitList);
+	const post = postList[idx].postObj;
 	const [isCompletion, setIsCompletion] = React.useState(
-		postObj.choiceNum === postObj.headcount
+		post.choiceNum === post.headcount
 	);
 
 	return (
@@ -20,15 +24,15 @@ const CruitAlert: React.FC<props> = ({ postObj, setIsOpen }) => {
 			{isCompletion ? (
 				<CruitCompleteAlert
 					setIsOpen={setIsOpen}
-					rid={postObj.recruitIdx}
-					platform={postObj.platform.platformName}
+					rid={post.recruitIdx}
+					platform={post.platform.platformName}
 				/>
 			) : (
 				<Container>
-					<Head postObj={postObj} />
-					<ListContainer postObj={postObj} />
+					<Head postObj={post} />
+					<ListContainer postObj={post} />
 					<BtnGroup
-						postObj={postObj}
+						postObj={post}
 						setIsOpen={setIsOpen}
 						setIsCompletion={setIsCompletion}
 					/>

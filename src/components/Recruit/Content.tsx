@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { userType } from '../common/NickName';
 import OttImg from '../common/OttImg';
 import PostContainer from './PostContainer';
 interface props {
@@ -22,10 +23,7 @@ export interface recruitPost {
 		platformIdx: number;
 		platformName: string;
 	};
-	writer: {
-		userIdx: number;
-		nickname: string;
-	};
+	writer: userType;
 	headcount: number;
 	choiceNum: number;
 	isCompleted: boolean;
