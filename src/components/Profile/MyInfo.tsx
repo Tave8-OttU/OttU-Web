@@ -16,7 +16,7 @@ const MyInfo: React.FC = () => {
 					관심 장르 변경
 					<img src={arrow} width="15px" />
 				</Link>
-				<Link to={`/profile/edit/kakaoId`}>
+				<Link to={`/profile/edit/kakaotalkId`}>
 					카카오 아이디 변경
 					<img src={arrow} width="15px" />
 				</Link>
