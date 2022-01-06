@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import { Otts } from '../../assets/Objects/otts';
 import { ott } from '../../pages/MyOtt';
 import OttImg from '../common/OttImg';
 interface props {
