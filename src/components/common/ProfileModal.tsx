@@ -5,11 +5,12 @@ import { RootState } from '../../modules';
 import GenreBox from './GenreBox';
 import LevelBox from './LevelBox';
 import Modal from './Modal';
+import { userType } from './NickName';
 interface props {
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	userObj: userType;
 }
-const ProfileModal: React.FC<props> = ({ setIsOpen }) => {
-	const { userObj } = useSelector((state: RootState) => state.user.userObj);
+const ProfileModal: React.FC<props> = ({ setIsOpen, userObj }) => {
 	return (
 		<Modal setIsOpen={setIsOpen}>
 			<Container className="col-container">
