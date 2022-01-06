@@ -1,30 +1,32 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../../modules';
 import { recruitPost } from '../Content';
 import AlertContainer from './AlertContainer';
 import Head from './Head';
 import RecruitInfo from './RecruitInfo';
 import Side from './Side';
 interface props {
-	postObj: recruitPost;
-	isWriter: boolean;
+	idx: number;
 	isMine?: boolean;
 }
-const Post: React.FC<props> = ({ postObj, isWriter, isMine }) => {
+const Post: React.FC<props> = ({ idx, isMine }) => {
 	const [isOpen, setIsOpen] = React.useState(false);
+	const { postList } = useSelector((state: RootState) => state.recruitList);
 	return (
 		<>
 			<Container className="row-container" isWhite={isMine}>
 				<Body className="col-container">
-					<Head postObj={postObj} isMine={isMine} />
-					<RecruitInfo postObj={postObj} />
+					<Head postObj={postList[idx].postObj} isMine={isMine} />
+					<RecruitInfo postObj={postList[idx].postObj} />
 				</Body>
-				<Side postObj={postObj} isWriter={isWriter} setIsOpen={setIsOpen} />
+				<Side idx={idx} setIsOpen={setIsOpen} />
 			</Container>
 			{isOpen && (
 				<AlertContainer
-					postObj={postObj}
-					isWriter={isWriter}
+					idx={idx}
+					isWriter={postList[idx].isWriter}
 					setIsOpen={setIsOpen}
 				/>
 			)}
@@ -39,10 +41,4 @@ const Container = styled.div<{ isWhite?: boolean }>`
 	background-color: #00000030;
 	font-size: small;
 	padding: 20px;
-	${(props) =>
-		props.isWhite &&
-		`
-    background-color: #ffffff;
-  color:#6D6D6D;
-  `}
 `;

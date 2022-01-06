@@ -1,36 +1,40 @@
 import axios from 'axios';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
 import { RootState } from '../../modules';
+import { recuritObj, setPostList } from '../../modules/recruitList';
 import { recruitPost } from './Content';
 import Post from './Post/Post';
 const PostContainer: React.FC = () => {
 	const { userObj } = useSelector((state: RootState) => state.user);
-	const [postArr, setPostArr] = React.useState([]);
+	const { postList } = useSelector((state: RootState) => state.recruitList);
 
 	const location = useLocation();
 	const params = new URLSearchParams(location.search);
 	const idx = params.get('idx');
 
+	const dispatch = useDispatch();
 	React.useEffect(() => {
 		axios.get(`/recruit/${idx}/list`).then((res) => {
-			setPostArr(res.data.recruitlist);
+			dispatch(
+				setPostList(
+					res.data.recruitlist.map((post: recruitPost) => ({
+						postObj: { ...post },
+						isWriter: post.writer.userIdx === userObj.userIdx,
+					}))
+				)
+			);
 		});
 	}, [idx]);
 
 	return (
 		<Container className="col-container">
-			{postArr.length === 0 ? (
+			{postList.length === 0 ? (
 				<Notice>아직 모집글이 없습니다.</Notice>
 			) : (
-				postArr.map((post: recruitPost) => (
-					<Post
-						postObj={post}
-						isWriter={post.writer.userIdx === userObj.userIdx}
-					/>
-				))
+				postList.map((post: recuritObj, idx: number) => <Post idx={idx} />)
 			)}
 		</Container>
 	);
