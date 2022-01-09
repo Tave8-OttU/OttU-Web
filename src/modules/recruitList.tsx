@@ -1,15 +1,19 @@
 import { recruitPost } from '../components/Recruit/Content';
 
 const SET_POSTLIST = 'recruitList/SET_POSTLIST';
-const PARTICIPATE = 'recruitList/PARTICIPATE';
+const SET_CURR = 'recruitList/SET_CURR';
+const APPLY = 'recruitList/APPLY';
+const ACCEPT = 'recruitList/ACCEPT';
+const COMPLETION = 'recruitList/COMPLETION';
 
 export interface recuritObj {
 	postObj: recruitPost;
 	isWriter: boolean;
-	isParticipated?: boolean;
+	isApplying?: boolean;
 }
 const initialState = {
 	postList: [],
+	currentIdx: 0,
 };
 export const setPostList = (postList: recuritObj[]) => {
 	return {
@@ -17,9 +21,30 @@ export const setPostList = (postList: recuritObj[]) => {
 		postList,
 	};
 };
+export const setCurrIdx = (idx: number) => {
+	return {
+		type: SET_CURR,
+		idx,
+	};
+};
 export const participate = (idx: number) => {
 	return {
-		type: PARTICIPATE,
+		type: APPLY,
+		idx,
+	};
+};
+
+export const accept = (idx: number, isAccept: boolean) => {
+	return {
+		type: ACCEPT,
+		isAccept,
+		idx,
+	};
+};
+
+export const completion = (idx: number) => {
+	return {
+		type: COMPLETION,
 		idx,
 	};
 };
@@ -30,12 +55,48 @@ export default function recruitList(state = initialState, action: any) {
 				...state,
 				postList: action.postList,
 			};
-		case PARTICIPATE:
+		case SET_CURR:
+			return {
+				...state,
+				currentIdx: action.idx,
+			};
+		case APPLY:
 			return {
 				...state,
 				postList: state.postList.map((post: recuritObj) =>
 					post.postObj.recruitIdx === action.idx
-						? { ...post, isParticipated: true }
+						? { ...post, isApplying: true }
+						: post
+				),
+			};
+		case ACCEPT:
+			return {
+				...state,
+				postList: state.postList.map((post: recuritObj, idx) =>
+					idx === action.idx
+						? {
+								...post,
+								postObj: {
+									...post.postObj,
+									choiceNum:
+										post.postObj.choiceNum + (action.isAccept ? 1 : -1),
+								},
+						  }
+						: post
+				),
+			};
+		case COMPLETION:
+			return {
+				...state,
+				postList: state.postList.map((post: recuritObj, idx) =>
+					idx === action.idx
+						? {
+								...post,
+								postObj: {
+									...post.postObj,
+									isCompleted: true,
+								},
+						  }
 						: post
 				),
 			};
