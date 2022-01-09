@@ -20,7 +20,7 @@ const MainContainer: React.FC = () => {
 			currentTarget: { id },
 		} = event;
 		myott
-			? navigate(`/myott/${id}`)
+			? navigate(`/myott/${ott}`)
 			: navigate(`/recruit/${ott}?idx=${parseInt(id) + 1}`);
 	};
 
@@ -42,7 +42,7 @@ const MainContainer: React.FC = () => {
 						id={idx + ''}
 						isNone={!myOttList.includes(ott)}
 					>
-						<Guide id="target">
+						<Guide id="target" isBlue={myOttList.includes(ott)}>
 							<OttImg ott={ott} height="20px" isWhite />
 							<Wrapper className="row-container">
 								{!myOttList.includes(ott) ? '팀원 모집' : '나의 OTT'} 바로가기
@@ -63,12 +63,12 @@ const Container = styled.div`
 	grid-template-columns: repeat(3, 350px);
 	gap: 50px;
 `;
-const Guide = styled.div`
+const Guide = styled.div<{ isBlue: boolean }>`
 	width: 400px;
 	padding: 20px;
 	box-sizing: border-box;
 	border-radius: 10px 10px 0 0;
-	background-color: #000000;
+	background-color: ${(props) => (props.isBlue ? '#45c7ff' : '#000000')};
 	position: absolute;
 	transform: translate(0, -8vw);
 	display: none;
