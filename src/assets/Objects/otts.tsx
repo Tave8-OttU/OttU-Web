@@ -27,5 +27,5 @@ export const Prices = [
 		{ price: 12900, headCount: 4, title: '프리미엄' },
 	],
 	[{ price: 9900, headCount: 4, title: '디즈니 플러스' }],
-	[{ price: 2900, headCount: 2, title: '쿠팡 플레이' }],
+	[{ price: 4900, headCount: 4, title: '쿠팡 플레이' }],
 ];
