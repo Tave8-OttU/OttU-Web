@@ -7,7 +7,10 @@ import { RootState } from '../../modules';
 import { recuritObj, setPostList } from '../../modules/recruitList';
 import { recruitPost } from './Content';
 import Post from './Post/Post';
-const PostContainer: React.FC = () => {
+interface props {
+	filterValue: number;
+}
+const PostContainer: React.FC<props> = ({ filterValue }) => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 	const { postList } = useSelector((state: RootState) => state.recruitList);
 
@@ -17,22 +20,27 @@ const PostContainer: React.FC = () => {
 
 	const dispatch = useDispatch();
 	React.useEffect(() => {
-		axios.get(`/recruit/${idx}/list`).then((res) => {
+		axios.get(`/recruit/${idx}/list/${userObj.userIdx}`).then((res) => {
 			dispatch(
 				setPostList(
-					res.data.recruitlist.map((post: recruitPost) => ({
-						postObj: { ...post },
-						isWriter: post.writer.userIdx === userObj.userIdx,
-					}))
+					res.data.recruitlist
+						.filter((p: recruitPost) =>
+							filterValue === 0 ? true : p.headcount === filterValue
+						)
+						.map((post: recruitPost) => ({
+							postObj: { ...post },
+							isWriter: post.writer.userIdx === userObj.userIdx,
+							isApplying: post.isApplying,
+						}))
 				)
 			);
 		});
-	}, [idx]);
+	}, [idx, filterValue]);
 
 	return (
 		<Container className="col-container">
 			{postList.length === 0 ? (
-				<Notice>아직 모집글이 없습니다.</Notice>
+				<Notice>모집글이 없습니다.</Notice>
 			) : (
 				postList.map((post: recuritObj, idx: number) => <Post idx={idx} />)
 			)}
