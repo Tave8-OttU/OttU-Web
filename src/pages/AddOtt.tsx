@@ -43,7 +43,7 @@ const AddOtt: React.FC = () => {
 	return (
 		<Container>
 			<Head />
-			<AddForm onSubmit={onSubmit} isAddOtt={true} />
+			<AddForm onSubmit={onSubmit} isAddOtt />
 		</Container>
 	);
 };

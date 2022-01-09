@@ -21,6 +21,7 @@ const Profile: React.FC<props> = ({ setIsOpen }) => {
 			setIsOpen(true);
 		}
 	};
+
 	React.useEffect(() => {
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => {

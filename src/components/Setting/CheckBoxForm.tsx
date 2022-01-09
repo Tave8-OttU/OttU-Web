@@ -1,32 +1,19 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Genres } from '../../assets/Objects/Genres';
 interface props {
-	interestArr: number[];
-	setInterestArr: React.Dispatch<React.SetStateAction<number[]>>;
+	genreArr: number[];
+	setGenreArr: React.Dispatch<React.SetStateAction<number[]>>;
 }
-const CheckBoxForm: React.FC<props> = ({ interestArr, setInterestArr }) => {
-	const Interests = [
-		'드라마',
-		'멜로/로맨스',
-		'범죄',
-		'스릴러',
-		'사극',
-		'성인/애로',
-		'애니메이션',
-		'액션',
-		'코미디',
-		'판타지',
-		'SF',
-		'기타',
-	];
+const CheckBoxForm: React.FC<props> = ({ genreArr, setGenreArr }) => {
 	const onClickHandler = (event: React.MouseEvent) => {
 		const {
 			currentTarget: { id },
 		} = event;
-		if (!interestArr.includes(parseInt(id))) {
-			interestArr.length < 3 && setInterestArr((p) => [...p, parseInt(id)]);
+		if (!genreArr.includes(parseInt(id))) {
+			genreArr.length < 3 && setGenreArr((p) => [...p, parseInt(id)]);
 		} else {
-			setInterestArr(interestArr.filter((it) => it != parseInt(id)));
+			setGenreArr(genreArr.filter((it) => it != parseInt(id)));
 		}
 	};
 	return (
@@ -35,14 +22,14 @@ const CheckBoxForm: React.FC<props> = ({ interestArr, setInterestArr }) => {
 				컨텐츠 관심 장르<span>*최대 3개</span>
 			</Label>
 			<CheckBoxContainer>
-				{Interests.map((interest, idx) => (
+				{Genres.map((genre, idx) => (
 					<GrayBtn
 						type="button"
 						onClick={onClickHandler}
-						isChecked={interestArr.includes(idx + 1)}
+						isChecked={genreArr.includes(idx + 1)}
 						id={idx + 1 + ''}
 					>
-						{interest}
+						{genre}
 					</GrayBtn>
 				))}
 			</CheckBoxContainer>

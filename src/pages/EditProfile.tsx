@@ -11,6 +11,8 @@ import { RootState } from '../modules';
 import { setUserInfo } from '../modules/user';
 const EditProfile: React.FC = () => {
 	const { type } = useParams();
+	const { userObj } = useSelector((state: RootState) => state.user);
+
 	const [infoObj, setInfoObj] = React.useState('');
 	const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const {
@@ -18,7 +20,7 @@ const EditProfile: React.FC = () => {
 		} = event;
 		setInfoObj(value);
 	};
-	const { userObj } = useSelector((state: RootState) => state.user);
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [isCheckAll, setIsCheckAll] = React.useState(false);

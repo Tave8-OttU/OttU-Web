@@ -10,14 +10,16 @@ interface props {
 }
 const Alert: React.FC<props> = ({ setIsOpen }) => {
 	const { userObj } = useSelector((state: RootState) => state.user);
+
 	const [alertArr, setAlertArr] = React.useState<alertType[]>([]);
 	React.useEffect(() => {
 		axios.get(`/user/${userObj.userIdx}/notice`).then((res) => {
-			console.log(res);
+			console.log(res.data);
 
 			setAlertArr(res.data.noticelist);
 		});
 	}, []);
+
 	return (
 		<Modal setIsOpen={setIsOpen}>
 			<AlertContainer className="col-container">

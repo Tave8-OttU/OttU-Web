@@ -3,14 +3,15 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import arrow from '../../assets/images/arrow.png';
 import { Otts } from '../../assets/Objects/otts';
 import { RootState } from '../../modules';
 import { ott } from '../../pages/MyOtt';
 import OttImg from '../common/OttImg';
+import Guide from './Guide';
 const MainContainer: React.FC = () => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 	const navigate = useNavigate();
+
 	const onClickHandler = (
 		event: React.MouseEvent,
 		myott: boolean,
@@ -42,13 +43,7 @@ const MainContainer: React.FC = () => {
 						id={idx + ''}
 						isNone={!myOttList.includes(ott)}
 					>
-						<Guide id="target" isBlue={myOttList.includes(ott)}>
-							<OttImg ott={ott} height="20px" isWhite />
-							<Wrapper className="row-container">
-								{!myOttList.includes(ott) ? '팀원 모집' : '나의 OTT'} 바로가기
-								<img src={arrow} width="15px" />
-							</Wrapper>
-						</Guide>
+						<Guide isMyOtt={myOttList.includes(ott)} ott={ott} />
 						<OttImg ott={ott} width="200px" />
 					</OttContainer>
 				</>
@@ -63,24 +58,6 @@ const Container = styled.div`
 	grid-template-columns: repeat(3, 350px);
 	gap: 50px;
 `;
-const Guide = styled.div<{ isBlue: boolean }>`
-	width: 400px;
-	padding: 20px;
-	box-sizing: border-box;
-	border-radius: 10px 10px 0 0;
-	background-color: ${(props) => (props.isBlue ? '#45c7ff' : '#000000')};
-	position: absolute;
-	transform: translate(0, -8vw);
-	display: none;
-	align-items: center;
-`;
-const Wrapper = styled.div`
-	flex: 1;
-	gap: 5px;
-	justify-content: flex-end;
-	font-weight: lighter;
-	font-size: small;
-`;
 const OttContainer = styled.div<{ isNone?: boolean }>`
 	background-color: white;
 	width: 350px;
@@ -94,7 +71,7 @@ const OttContainer = styled.div<{ isNone?: boolean }>`
 	${(props) =>
 		props.isNone &&
 		`
-  opacity:50%;`}
+  	opacity:50%;`}
 	transition: 0.3s;
 	&:hover {
 		#target {

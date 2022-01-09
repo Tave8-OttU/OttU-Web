@@ -5,15 +5,16 @@ import { userType } from '../../common/NickName';
 import { recruitPost } from '../Content';
 import JoinList from './JoinList';
 interface props {
-	postObj: recruitPost;
+	rid: number;
 }
-const ListContainer: React.FC<props> = ({ postObj }) => {
+const ListContainer: React.FC<props> = ({ rid }) => {
 	const [waitList, setWaitList] = React.useState([]);
 	React.useEffect(() => {
-		axios.get(`/recruit/${postObj.recruitIdx}/waitlist`).then((res) => {
+		axios.get(`/recruit/${rid}/waitlist`).then((res) => {
 			setWaitList(res.data.waitlist);
 		});
 	}, []);
+
 	return (
 		<Container className="col-container">
 			{waitList.map((wait: waitList) => (

@@ -40,7 +40,7 @@ const AddPost: React.FC = () => {
 	return (
 		<Container>
 			<Head />
-			<AddForm onSubmit={onSubmit} isAddOtt={false} setIsCheck={setIsCheck} />
+			<AddForm onSubmit={onSubmit} setIsCheck={setIsCheck} />
 		</Container>
 	);
 };

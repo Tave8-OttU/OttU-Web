@@ -6,6 +6,15 @@ import OttForm from '../Addott/OttForm';
 import PriceBoxForm from '../Addott/PriceBoxForm';
 import ExplainBox from '../AddPost/ExplainBox';
 import { BlueBtn } from './Buttons';
+interface props {
+	onSubmit: (
+		event: React.FormEvent,
+		postObj: addPostObj,
+		paymentDay: number
+	) => void;
+	isAddOtt?: boolean;
+	setIsCheck?: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const AddForm: React.FC<props> = ({ onSubmit, isAddOtt, setIsCheck }) => {
 	const [postObj, setPostObj] = React.useState({
@@ -20,8 +29,9 @@ const AddForm: React.FC<props> = ({ onSubmit, isAddOtt, setIsCheck }) => {
 		} = event;
 		setPostObj((p) => ({ ...p, [type]: parseInt(id) }));
 	};
+
 	return (
-		<Body onSubmit={(e) => onSubmit(e, postObj, date)}>
+		<Form onSubmit={(e) => onSubmit(e, postObj, date)}>
 			<Wrapper className="col-container">
 				<OttForm
 					platform={postObj.platformIdx}
@@ -37,19 +47,10 @@ const AddForm: React.FC<props> = ({ onSubmit, isAddOtt, setIsCheck }) => {
 					setIsCheck && <ExplainBox setIsCheck={setIsCheck} />
 				)}
 			</Wrapper>
-		</Body>
+		</Form>
 	);
 };
 export default AddForm;
-interface props {
-	onSubmit: (
-		event: React.FormEvent,
-		postObj: addPostObj,
-		paymentDay: number
-	) => void;
-	isAddOtt: boolean;
-	setIsCheck?: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -63,7 +64,7 @@ const Wrapper = styled.div`
 		margin-bottom: 30px;
 	}
 `;
-const Body = styled.form`
+const Form = styled.form`
 	display: flex;
 	flex-direction: row;
 	padding: 50px;

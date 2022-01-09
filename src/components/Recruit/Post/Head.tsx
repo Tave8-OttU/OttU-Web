@@ -5,12 +5,12 @@ import { recruitPost } from '../Content';
 
 interface props {
 	postObj: recruitPost;
-	isMine?: boolean;
+	isMyPost?: boolean;
 }
-const Head: React.FC<props> = ({ postObj, isMine }) => {
+const Head: React.FC<props> = ({ postObj, isMyPost }) => {
 	return (
 		<>
-			{isMine ? (
+			{isMyPost ? (
 				<OttImg ott={postObj.platform.platformName} width="80px" isWhite />
 			) : (
 				<NickName userIdx={postObj.writer.userIdx} />

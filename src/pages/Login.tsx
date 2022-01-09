@@ -2,16 +2,15 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
-import kakao from '../assets/images/kakao_login.png';
 import logo from '../assets/images/logo_s.png';
 import randing from '../assets/images/randing.png';
+import LoginView from '../components/Login/LoginView';
 import Head from '../components/Setting/Head';
 import { setLoggedInfo, setSettingInfo } from '../modules/user';
 import { kakaoLoginHandler } from '../utils/KakaoLogin';
 const Login: React.FC = () => {
 	const dispatch = useDispatch();
 
-	const kauthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_REST_KEY}&redirect_uri=http://localhost:3000/&response_type=code`;
 	const location = useLocation();
 	const params = new URLSearchParams(location.search);
 	const code = params.get('code');
@@ -48,16 +47,7 @@ const Login: React.FC = () => {
 						<h2>OttU</h2>
 					</TextView>
 					<img src={logo} width="30%" />
-					<LoginView className="col-container">
-						<p>
-							카카오 간편 로그인으로
-							<br />
-							<span>오뜨U</span>를 이용해보세요.
-						</p>
-						<a href={kauthUrl}>
-							<img width="200px" src={kakao} />
-						</a>
-					</LoginView>
+					<LoginView />
 				</Wrapper>
 			</Body>
 		</Container>
@@ -79,20 +69,6 @@ const TextView = styled.div`
 		text-align: right;
 		color: #45c7ff;
 	}
-`;
-const LoginView = styled.div`
-	padding: 20%;
-	padding-bottom: 10%;
-	font-weight: lighter;
-	span {
-		color: #45c7ff;
-		margin-left: 20%;
-	}
-	p {
-		width: 60%;
-		line-height: 2;
-	}
-	align-items: flex-end;
 `;
 const Body = styled.div``;
 const Wrapper = styled.div`

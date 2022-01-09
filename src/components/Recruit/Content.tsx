@@ -11,10 +11,12 @@ interface props {
 }
 const Content: React.FC<props> = ({ ott }) => {
 	const [isOpen, setIsOpen] = React.useState(false);
+
 	const [filterValue, setFilterValue] = React.useState(0);
 	React.useEffect(() => {
 		setFilterValue(0);
 	}, [ott]);
+
 	return (
 		<Container className="col-container">
 			<Head>

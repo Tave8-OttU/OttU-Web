@@ -14,12 +14,14 @@ const AlertCard: React.FC<props> = ({
 	teamIdx,
 	isEvaluated,
 }) => {
+	const ott = content.split(`'`)[1];
 	const [isOpen, setIsOpen] = React.useState(false);
 	const onClickHandler = () => {
 		teamIdx && isEvaluated
 			? alert('이미 평가가 완료되었습니다.')
 			: setIsOpen(true);
 	};
+
 	return (
 		<>
 			<Container className="col-container" onClick={onClickHandler}>
@@ -27,7 +29,7 @@ const AlertCard: React.FC<props> = ({
 				<DateBox dateString={date} />
 			</Container>
 			{isOpen && teamIdx && (
-				<EvaluationBox setIsOpen={setIsOpen} teamIdx={teamIdx} />
+				<EvaluationBox setIsOpen={setIsOpen} teamIdx={teamIdx} ott={ott} />
 			)}
 		</>
 	);

@@ -34,7 +34,7 @@ export const kakaoLoginHandler = async (code: string) => {
 	});
 };
 
-export const autoLoginHandler = async (access_token: string) => {
+export const autoLoginHandler = async () => {
 	return new Promise((resolve, rejects) => {
 		axios.post('/auth/kakao').then((res) => {
 			res.status === 200 && resolve({ data: { user: res.data.user } });

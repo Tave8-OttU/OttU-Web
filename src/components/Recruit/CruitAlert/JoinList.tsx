@@ -12,8 +12,8 @@ interface props {
 	isJoin: boolean;
 }
 const JoinList: React.FC<props> = ({ waitIdx, userIdx, isJoin }) => {
-	const [isAccepted, setIsAccepted] = React.useState(isJoin);
 	const { currentIdx } = useSelector((state: RootState) => state.recruitList);
+	const [isAccepted, setIsAccepted] = React.useState(isJoin);
 
 	const dispatch = useDispatch();
 	const onClickHandler = () => {

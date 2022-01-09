@@ -9,6 +9,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { setUserInfo } from '../modules/user';
 const Setting: React.FC = () => {
+	const { userObj } = useSelector((state: RootState) => state.user);
+	const dispatch = useDispatch();
+
+	const [genreArr, setGenreArr] = React.useState<number[]>([]);
 	const [infoObj, setInfoObj] = React.useState({
 		nickname: '',
 		kakaotalkId: '',
@@ -19,8 +23,8 @@ const Setting: React.FC = () => {
 		} = event;
 		setInfoObj((p) => ({ ...p, [name]: value }));
 	};
-	const { userObj } = useSelector((state: RootState) => state.user);
-	const dispatch = useDispatch();
+
+	const [isCheckAll, setIsCheckAll] = React.useState(false);
 	const onSubmitHandler = (event: React.FormEvent) => {
 		event.preventDefault();
 		try {
@@ -30,7 +34,7 @@ const Setting: React.FC = () => {
 			axios
 				.patch(`/user/${userObj.userIdx}`, {
 					...infoObj,
-					genres: interestArr,
+					genres: genreArr,
 				})
 				.then((res) => {
 					axios
@@ -41,9 +45,7 @@ const Setting: React.FC = () => {
 			alert(err.message);
 		}
 	};
-	const [interestArr, setInterestArr] = React.useState<number[]>([]);
 
-	const [isCheckAll, setIsCheckAll] = React.useState(false);
 	return (
 		<Container>
 			<Head />
@@ -57,8 +59,8 @@ const Setting: React.FC = () => {
 					<SettingForm
 						infoObj={infoObj}
 						onChangeHandler={onChangeHandler}
-						interestArr={interestArr}
-						setInterestArr={setInterestArr}
+						genreArr={genreArr}
+						setGenreArr={setGenreArr}
 						setIsCheckAll={setIsCheckAll}
 					/>
 				</Wrapper>

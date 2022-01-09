@@ -8,24 +8,25 @@ import RecruitInfo from './RecruitInfo';
 import Side from './Side';
 interface props {
 	idx: number;
-	isMine?: boolean;
+	isMyPost?: boolean;
 }
-const Post: React.FC<props> = ({ idx, isMine }) => {
+const Post: React.FC<props> = ({ idx, isMyPost }) => {
 	const [isOpen, setIsOpen] = React.useState(false);
 	const { postList } = useSelector((state: RootState) => state.recruitList);
 	return (
 		<>
 			<Container
 				className="row-container"
-				isWhite={isMine}
-				isOver={postList[idx].postObj.isCompleted}
+				isWhite={isMyPost}
+				isCompleted={postList[idx].postObj.isCompleted}
 			>
 				<Body className="col-container">
-					<Head postObj={postList[idx].postObj} isMine={isMine} />
+					<Head postObj={postList[idx].postObj} isMyPost={isMyPost} />
 					<RecruitInfo postObj={postList[idx].postObj} />
 				</Body>
 				<Side idx={idx} setIsOpen={setIsOpen} />
 			</Container>
+
 			{isOpen && (
 				<AlertContainer
 					idx={idx}
@@ -40,13 +41,13 @@ export default Post;
 const Body = styled.div`
 	gap: 30px;
 `;
-const Container = styled.div<{ isWhite?: boolean; isOver?: boolean }>`
+const Container = styled.div<{ isWhite?: boolean; isCompleted?: boolean }>`
 	background-color: ${(props) => (props.isWhite ? '#ffffff' : `#00000030`)};
 	font-size: small;
 	padding: 20px;
 	${(props) => props.isWhite && `color:gray;`};
 	${(props) =>
-		props.isOver &&
+		props.isCompleted &&
 		`
 	opacity:60%;`}
 `;

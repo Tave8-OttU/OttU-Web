@@ -27,7 +27,7 @@ const PostContainer: React.FC = () => {
 	return (
 		<Container className="col-container">
 			{postList.map((post: recuritObj, idx: number) => (
-				<Post idx={idx} isMine={true} />
+				<Post idx={idx} isMyPost={true} />
 			))}
 		</Container>
 	);

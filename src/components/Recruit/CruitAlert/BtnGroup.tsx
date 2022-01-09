@@ -14,12 +14,15 @@ interface props {
 }
 const BtnGroup: React.FC<props> = ({ postObj, setIsOpen, setIsCompleted }) => {
 	const { currentIdx } = useSelector((state: RootState) => state.recruitList);
+	const isFull = postObj.choiceNum === postObj.headcount;
+
 	const navigate = useNavigate();
 	const onDelClickHandler = () => {
 		axios.delete(`/recruit/${postObj.recruitIdx}`).then((res) => {
 			res.status === 200 && navigate('/');
 		});
 	};
+
 	const dispatch = useDispatch();
 	const onCompleteClickHandler = () => {
 		axios.get(`/recruit/${postObj.recruitIdx}/members`).then((res) => {
@@ -27,9 +30,10 @@ const BtnGroup: React.FC<props> = ({ postObj, setIsOpen, setIsCompleted }) => {
 			dispatch(completion(currentIdx));
 		});
 	};
+
 	return (
 		<Container className="row-container">
-			{postObj.choiceNum === postObj.headcount ? (
+			{isFull ? (
 				<BlueBtn onClick={onCompleteClickHandler}>확정</BlueBtn>
 			) : (
 				<GrayBorderBtn onClick={() => setIsOpen(false)}>확인</GrayBorderBtn>

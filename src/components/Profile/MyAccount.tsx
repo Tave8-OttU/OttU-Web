@@ -10,9 +10,10 @@ import axios from 'axios';
 import { RootState } from '../../modules';
 import { useNavigate } from 'react-router';
 const MyAccount: React.FC = () => {
-	const dispatch = useDispatch();
 	const { userObj } = useSelector((state: RootState) => state.user);
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
 	const onClickLogoutHandler = () => {
 		kakaoLogoutHandler().then((res: any) => {
 			if (res.status === 200) {

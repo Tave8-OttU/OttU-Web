@@ -6,14 +6,17 @@ import { RootState } from '../../modules';
 import { BlueBtn } from '../common/Buttons';
 import Modal from '../common/Modal';
 import OttImg from '../common/OttImg';
+import EvaluationHead from './EvaluationHead';
 import MemberBox from './MemberBox';
 interface props {
 	teamIdx: number;
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	ott: string;
 }
-const EvaluationBox: React.FC<props> = ({ teamIdx, setIsOpen }) => {
+const EvaluationBox: React.FC<props> = ({ teamIdx, setIsOpen, ott }) => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 	const [memberList, setMemberList] = React.useState<member[]>([]);
+	const [reliability, setReliability] = React.useState<number[]>([]);
 	React.useEffect(() => {
 		axios.get(`/team/${teamIdx}/evaluation/${userObj.userIdx}`).then((res) => {
 			setMemberList(res.data.userlist);
@@ -21,7 +24,6 @@ const EvaluationBox: React.FC<props> = ({ teamIdx, setIsOpen }) => {
 		});
 	}, []);
 
-	const [reliability, setReliability] = React.useState<number[]>([]);
 	const onClickHandler = () => {
 		axios
 			.post(`/team/${teamIdx}/evaluation`, {
@@ -32,14 +34,11 @@ const EvaluationBox: React.FC<props> = ({ teamIdx, setIsOpen }) => {
 				res.status === 200 && setIsOpen(false);
 			});
 	};
+
 	return (
 		<Modal setIsOpen={setIsOpen}>
 			<Container className="col-container">
-				<OttImg ott={'Tving'} width="100px" />
-				<h4>팀원 신뢰도 평가</h4>
-				<Notice>
-					오뜨 level에 반영되는 평가로 추후 사용자의 신뢰도를 나타내줍니다.
-				</Notice>
+				<EvaluationHead ott={ott} />
 				<Wrapper className="col-container">
 					{memberList.map((mem, idx) => (
 						<MemberBox
@@ -86,9 +85,4 @@ const Container = styled.div`
 const Wrapper = styled.div`
 	gap: 10px;
 	justify-content: center;
-`;
-const Notice = styled.span`
-	font-size: small;
-	font-weight: lighter;
-	color: #c4c4c4;
 `;

@@ -30,7 +30,7 @@ const CruitAlert: React.FC<props> = ({ setIsOpen }) => {
 			) : (
 				<Container>
 					<Head postObj={post} />
-					<ListContainer postObj={post} />
+					<ListContainer rid={post.recruitIdx} />
 					<BtnGroup
 						postObj={post}
 						setIsOpen={setIsOpen}

@@ -9,15 +9,15 @@ interface Formprops {
 		kakaotalkId: string;
 	};
 	onChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
-	interestArr: number[];
-	setInterestArr: React.Dispatch<React.SetStateAction<number[]>>;
+	genreArr: number[];
+	setGenreArr: React.Dispatch<React.SetStateAction<number[]>>;
 	setIsCheckAll: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const SettingForm: React.FC<Formprops> = ({
 	infoObj,
 	onChangeHandler,
-	interestArr,
-	setInterestArr,
+	genreArr,
+	setGenreArr,
 	setIsCheckAll,
 }) => {
 	return (
@@ -31,7 +31,7 @@ const SettingForm: React.FC<Formprops> = ({
 				kakaotalkId={infoObj.kakaotalkId}
 				onChangeHandler={onChangeHandler}
 			/>
-			<CheckBoxForm interestArr={interestArr} setInterestArr={setInterestArr} />
+			<CheckBoxForm genreArr={genreArr} setGenreArr={setGenreArr} />
 		</Container>
 	);
 };

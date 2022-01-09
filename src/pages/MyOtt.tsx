@@ -16,8 +16,6 @@ const MyOtt: React.FC = () => {
 	const [ottList, setOttList] = React.useState<ott[]>([]);
 	React.useEffect(() => {
 		axios.get(`/user/${userObj.userIdx}/ott`).then((res) => {
-			console.log(res.data);
-
 			setOttList(res.data.ottlist);
 			!ott
 				? setOttObj(res.data.ottlist[0])
@@ -33,7 +31,7 @@ const MyOtt: React.FC = () => {
 			<Head />
 			<Label>나의 OTT</Label>
 			<Body>
-				{ottObj && (
+				{ottObj ? (
 					<>
 						<OttContainer
 							ott={ott ? ott : ottObj?.platform.platformName}
@@ -41,6 +39,8 @@ const MyOtt: React.FC = () => {
 						/>
 						<Content ottObj={ottObj} />
 					</>
+				) : (
+					<Notice>구독 중인 OTT가 없습니다.</Notice>
 				)}
 			</Body>
 			<WriteBtn isAddOtt={true} />
@@ -57,12 +57,20 @@ const Body = styled.div`
 `;
 const Label = styled.div`
 	background-color: #00000020;
-	margin: 30px 50px;
+	margin: 20px 50px;
 	padding: 30px;
 	border-radius: 10px;
-	color: #45c7ff;
 `;
-
+const Notice = styled.div`
+	background-color: #1a1a1a;
+	text-align: center;
+	width: 100%;
+	border-radius: 10px;
+	padding: 100px 50px;
+	box-shadow: 20px 20px 20px 10px #00000025;
+	margin-bottom: 50vh;
+	color: #ffffff50;
+`;
 export interface ott {
 	teamIdx: number;
 	platform: {

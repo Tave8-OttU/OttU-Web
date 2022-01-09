@@ -13,9 +13,11 @@ import axios from 'axios';
 
 const store = createStore(persistedReducer, composeWithDevTools());
 const persistor = persistStore(store);
+
 axios.defaults.headers.common['authorization'] = JSON.parse(
 	localStorage.getItem('token') + ''
 )?.access_token;
+
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>

@@ -19,6 +19,7 @@ const MemberBox: React.FC<props> = ({ userIdx, setReliability, idx }) => {
 	React.useEffect(() => {
 		setReliability((p) => p.map((prev, i) => (i === idx ? count : prev)));
 	}, [count]);
+
 	return (
 		<Container className="row-container">
 			<NickName userIdx={userIdx} />

@@ -16,21 +16,24 @@ const EditGenre: React.FC = () => {
 		event.preventDefault();
 		try {
 			axios
-				.patch(`/user/${userObj.userIdx}`, { genres: interestArr })
+				.patch(`/user/${userObj.userIdx}`, { genres: genreArr })
 				.then((res) => {
 					axios
 						.get(`/user/${userObj.userIdx}`)
 						.then((res) => dispatch(setUserInfo(res.data.user)));
 					navigate('/');
 				});
-		} catch (err) {}
+		} catch (err: any) {
+			alert(err.message);
+		}
 	};
-	const [interestArr, setInterestArr] = React.useState<number[]>(
+
+	const [genreArr, setGenreArr] = React.useState<number[]>(
 		userObj.genres.map((it: genreType) => it.genreIdx)
 	);
 	return (
 		<From className="col-container" onSubmit={onSubmit}>
-			<CheckBoxForm interestArr={interestArr} setInterestArr={setInterestArr} />
+			<CheckBoxForm genreArr={genreArr} setGenreArr={setGenreArr} />
 			<BlueBtn>변경</BlueBtn>
 		</From>
 	);
