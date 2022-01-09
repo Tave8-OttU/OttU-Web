@@ -34,8 +34,7 @@ const AddOtt: React.FC = () => {
 					paymentDay: paymentDay,
 				})
 				.then((res) => {
-					res.status === 201 &&
-						navigate(`/myott/${Otts[postObj.platformIdx]}}`);
+					res.status === 201 && navigate(`/myott/${Otts[postObj.platformIdx]}`);
 				});
 		} catch (err: any) {
 			alert(err.message);
