@@ -3,30 +3,40 @@ import styled from 'styled-components';
 import DateBox from '../common/DateBox';
 import EvaluationBox from './EvaluationBox';
 interface props {
-  content: string;
-  date: string;
-  isEvalue?: boolean;
+	content: string;
+	date: string;
+	teamIdx?: number;
+	isEvaluated: boolean;
 }
-const AlertCard: React.FC<props> = ({ content, date, isEvalue }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const onClickHandler = () => {
-    isEvalue && setIsOpen(true);
-  };
-  return (
-    <>
-      <Container className="col-container" onClick={onClickHandler}>
-        <span>{content}</span>
-        <DateBox dateString={date} />
-      </Container>
-      {isOpen && <EvaluationBox setIsOpen={setIsOpen} />}
-    </>
-  );
+const AlertCard: React.FC<props> = ({
+	content,
+	date,
+	teamIdx,
+	isEvaluated,
+}) => {
+	const [isOpen, setIsOpen] = React.useState(false);
+	const onClickHandler = () => {
+		teamIdx && isEvaluated
+			? alert('이미 평가가 완료되었습니다.')
+			: setIsOpen(true);
+	};
+	return (
+		<>
+			<Container className="col-container" onClick={onClickHandler}>
+				<span>{content}</span>
+				<DateBox dateString={date} />
+			</Container>
+			{isOpen && teamIdx && (
+				<EvaluationBox setIsOpen={setIsOpen} teamIdx={teamIdx} />
+			)}
+		</>
+	);
 };
 export default AlertCard;
 const Container = styled.div`
-  background-color: #343434;
-  padding: 10px;
-  gap: 20px;
-  background-color: #00000075;
-  font-size: small;
+	background-color: #343434;
+	padding: 10px;
+	gap: 20px;
+	background-color: #00000075;
+	font-size: small;
 `;
