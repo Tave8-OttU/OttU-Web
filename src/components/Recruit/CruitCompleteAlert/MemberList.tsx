@@ -7,7 +7,7 @@ interface props {
 const MemberList: React.FC<props> = ({ userObj }) => {
 	return (
 		<Container className="row-container">
-			<NickName userObj={userObj} />
+			<NickName userIdx={userObj.userIdx} />
 			<IdBox className="row-container">
 				<span>카카오 아이디</span>
 				{userObj.kakaotalkId}

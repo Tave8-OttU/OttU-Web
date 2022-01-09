@@ -13,7 +13,7 @@ const Head: React.FC<props> = ({ postObj, isMine }) => {
 			{isMine ? (
 				<OttImg ott={postObj.platform.platformName} width="80px" isWhite />
 			) : (
-				<NickName userObj={postObj.writer} />
+				<NickName userIdx={postObj.writer.userIdx} />
 			)}
 		</>
 	);

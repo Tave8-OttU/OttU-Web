@@ -4,23 +4,29 @@ import styled from 'styled-components';
 import { genreType } from './GenreBox';
 import ProfileModal from './ProfileModal';
 interface props {
-	userObj: userType;
+	userIdx: number;
 }
-const NickName: React.FC<props> = ({ userObj }) => {
+const NickName: React.FC<props> = ({ userIdx }) => {
 	const [isOpen, setIsOpen] = React.useState(false);
 	const oClickJoinHandler = () => {
 		setIsOpen(true);
 	};
-	const [user, setUser] = React.useState();
+	const [user, setUser] = React.useState<userType>();
 	React.useEffect(() => {
-		axios.get(`/user/${userObj.userIdx}`).then((res) => {
+		axios.get(`/user/${userIdx}`).then((res) => {
 			setUser(res.data.user);
 		});
-	}, []);
+	}, [userIdx]);
 	return (
 		<>
-			<Container onClick={oClickJoinHandler}>{userObj.nickname}</Container>
-			{isOpen && <ProfileModal setIsOpen={setIsOpen} userObj={userObj} />}
+			{user && (
+				<>
+					<Container type="button" onClick={oClickJoinHandler}>
+						{user?.nickname}
+					</Container>
+					{isOpen && <ProfileModal setIsOpen={setIsOpen} userObj={user} />}
+				</>
+			)}
 		</>
 	);
 };
