@@ -29,7 +29,7 @@ const Body = styled.div`
 `;
 const Label = styled.div`
 	background-color: #00000020;
-	margin: 30px 50px;
+	margin: 20px 50px;
 	padding: 30px;
 	border-radius: 10px;
 `;

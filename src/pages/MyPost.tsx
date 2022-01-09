@@ -14,7 +14,9 @@ const MyPost: React.FC = () => {
 	);
 };
 export default MyPost;
-const Container = styled.div``;
+const Container = styled.div`
+	min-height: 85vh;
+`;
 const Body = styled.div`
 	display: flex;
 	padding: 20px;

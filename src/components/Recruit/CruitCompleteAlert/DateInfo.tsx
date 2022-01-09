@@ -24,7 +24,7 @@ const Notice = styled.span`
 `;
 const Container = styled.div`
 	width: 100%;
-	gap: 15px;
+	gap: 20px;
 	h3 {
 		margin: 0;
 		color: #45c7ff;
