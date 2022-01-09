@@ -16,12 +16,16 @@ const MyOtt: React.FC = () => {
 	const [ottList, setOttList] = React.useState<ott[]>([]);
 	React.useEffect(() => {
 		axios.get(`/user/${userObj.userIdx}/ott`).then((res) => {
+			console.log(res.data);
+
 			setOttList(res.data.ottlist);
-			res.data.ottlist.map(
-				(it: ott) => it.platform.platformName === ott && setOttObj(it)
-			);
+			!ott
+				? setOttObj(res.data.ottlist[0])
+				: res.data.ottlist.map(
+						(it: ott) => it.platform.platformName === ott && setOttObj(it)
+				  );
 		});
-	}, []);
+	}, [ott]);
 
 	const [ottObj, setOttObj] = React.useState<ott | null>();
 	return (
@@ -29,8 +33,15 @@ const MyOtt: React.FC = () => {
 			<Head />
 			<Label>나의 OTT</Label>
 			<Body>
-				<OttContainer ott={ott} ottList={ottList} />
-				{ottObj && <Content ottObj={ottObj} />}
+				{ottObj && (
+					<>
+						<OttContainer
+							ott={ott ? ott : ottObj?.platform.platformName}
+							ottList={ottList}
+						/>
+						<Content ottObj={ottObj} />
+					</>
+				)}
 			</Body>
 			<WriteBtn isAddOtt={true} />
 		</Container>
@@ -46,7 +57,7 @@ const Body = styled.div`
 `;
 const Label = styled.div`
 	background-color: #00000020;
-	margin: 50px;
+	margin: 30px 50px;
 	padding: 30px;
 	border-radius: 10px;
 	color: #45c7ff;
