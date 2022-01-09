@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import { Otts } from '../../assets/Objects/otts';
 import { ott } from '../../pages/MyOtt';
 import OttImg from '../common/OttImg';
 interface props {
@@ -56,8 +55,15 @@ const OttBox = styled.div<{ isSmall?: boolean }>`
 	${(props) =>
 		props.isSmall &&
 		`
-  width: 250px;
-  height: 135px;
-  opacity:50%;
-  `}
+		width: 250px;
+		height: 135px;
+		opacity:50%;
+		transition:0.3s;
+		&:hover{
+			opacity:100%;
+			width: 350px;
+			height: 185px;
+			img{width:200px}
+		}
+		`}
 `;

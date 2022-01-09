@@ -22,7 +22,8 @@ const PriceBoxForm: React.FC<props> = ({ postObj, onClickHandler }) => {
 							isClicked={p.headCount === postObj.headcount}
 						>
 							<span>{p.title}</span>
-							<span>{p.price}원</span>
+							<small>{p.headCount}명</small>
+							<span>{p.price.toLocaleString('ko-kr')}원</span>
 						</Box>
 					))}
 			</Wrapper>
@@ -58,4 +59,7 @@ const Box = styled.div<{ isClicked: boolean }>`
   background-color: #ffffff30;
 
   `};
+	&:hover {
+		background-color: #ffffff30;
+	}
 `;
