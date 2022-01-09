@@ -1,25 +1,38 @@
+import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
 import { GrayBGBtn } from '../common/Buttons';
+import { DarkGrayLabel } from '../common/Labels';
 interface props {
-	isParticipated: boolean;
+	isApplying: boolean;
 	isWriter: boolean;
 	onClickHandler: React.MouseEventHandler<HTMLButtonElement>;
+	rid: number;
 }
 const BtnGroup: React.FC<props> = ({
-	isParticipated,
+	isApplying,
 	isWriter,
 	onClickHandler,
+	rid,
 }) => {
+	const [isTeam, setIsTeem] = React.useState(false);
+	React.useEffect(() => {
+		isWriter &&
+			axios.get(`/recruit/${rid}/waitlist`).then((res) => {
+				setIsTeem(res.data.isTeam);
+			});
+	}, []);
 	return (
 		<>
-			{isWriter ? (
+			{isWriter && !isTeam && (
 				<GrayBGBtn onClick={onClickHandler}>참여 정보</GrayBGBtn>
-			) : isParticipated ? (
-				<GrayBGBtn>참여 완료</GrayBGBtn>
-			) : (
-				<JoinBtn onClick={onClickHandler}>참여 하기</JoinBtn>
 			)}
+			{!isWriter &&
+				(isApplying ? (
+					<DarkGrayLabel>참여 완료</DarkGrayLabel>
+				) : (
+					<JoinBtn onClick={onClickHandler}>참여 하기</JoinBtn>
+				))}
 		</>
 	);
 };
