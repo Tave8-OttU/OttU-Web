@@ -8,21 +8,27 @@ interface props {
 	onSubmit: React.FormEventHandler<HTMLFormElement>;
 	nickname: string;
 	onChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
+	setIsCheckAll: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const EditNickName: React.FC<props> = ({
 	onSubmit,
 	nickname,
 	onChangeHandler,
+	setIsCheckAll,
 }) => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 	return (
 		<From className="col-container" onSubmit={onSubmit}>
 			<span>기존 닉네임</span>
 			<Prev>{userObj.nickname}</Prev>
-			<NickNameForm nickname={nickname} onChangeHandler={onChangeHandler} />
+			<NickNameForm
+				nickname={nickname}
+				onChangeHandler={onChangeHandler}
+				setIsCheckAll={setIsCheckAll}
+			/>
 			<Notice>
-				- 영문 최대 16글자 혹은 한글 최대 8글자까지 가능
-				<br />- 소문자, 숫자, 한글, _* 사용 가능
+				- 영소문/한글/숫자/_* 2-20자
+				<br />- 영소문|한글 1자 이상 포함
 			</Notice>
 			<BlueBtn>변경</BlueBtn>
 		</From>

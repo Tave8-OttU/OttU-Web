@@ -21,16 +21,22 @@ const EditProfile: React.FC = () => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const [isCheckAll, setIsCheckAll] = React.useState(false);
 	const onSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
 		try {
+			if (type === 'nickname' && !isCheckAll) {
+				throw new Error('입력 사항을 다 확인해주세요.');
+			}
 			axios
 				.patch(`/user/${userObj.userIdx}`, { [type ? type : '']: infoObj })
 				.then((res) => {
 					dispatch(setUserInfo({ ...userObj, [type ? type : '']: infoObj }));
 					navigate('/');
 				});
-		} catch (err) {}
+		} catch (err: any) {
+			alert(err.message);
+		}
 	};
 
 	return (
@@ -49,6 +55,7 @@ const EditProfile: React.FC = () => {
 						onSubmit={onSubmit}
 						nickname={infoObj}
 						onChangeHandler={onChangeHandler}
+						setIsCheckAll={setIsCheckAll}
 					/>
 				)}
 				{type === 'genre' && <EditGenre />}
