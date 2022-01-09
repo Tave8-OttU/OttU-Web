@@ -12,10 +12,11 @@ const AddPost: React.FC = () => {
 	const navigate = useNavigate();
 	const { userObj } = useSelector((state: RootState) => state.user);
 
+	const [isCheck, setIsCheck] = React.useState(false);
 	const onSubmit = (event: React.FormEvent, postObj: addPostObj) => {
 		event.preventDefault();
 		try {
-			if (postObj.headcount === 0 || postObj.platformIdx === -1) {
+			if (postObj.headcount === 0 || postObj.platformIdx === -1 || !isCheck) {
 				throw new Error('모든 내용이 선택되었는지 확인해주세요.');
 			}
 			axios
@@ -39,7 +40,7 @@ const AddPost: React.FC = () => {
 	return (
 		<Container>
 			<Head />
-			<AddForm onSubmit={onSubmit} isAddOtt={false} />
+			<AddForm onSubmit={onSubmit} isAddOtt={false} setIsCheck={setIsCheck} />
 		</Container>
 	);
 };

@@ -1,6 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-const ExplainBox: React.FC = () => {
+interface props {
+	setIsCheck: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const ExplainBox: React.FC<props> = ({ setIsCheck }) => {
 	return (
 		<Container className="col-container">
 			<span>진행 방법</span>
@@ -30,6 +33,10 @@ const ExplainBox: React.FC = () => {
 			<Notice>
 				*팀 해체시, 오뜨 level에 적용되는 팀원간의 평가가 이루어집니다.
 			</Notice>
+			<CheckBox className="row-container">
+				<input type="checkbox" onChange={() => setIsCheck((p) => !p)} />
+				<span>위 사항들을 확인했습니다.</span>
+			</CheckBox>
 		</Container>
 	);
 };
@@ -62,6 +69,14 @@ const Content = styled.span`
 	span {
 		font-size: x-small;
 		color: white;
+		font-weight: lighter;
+	}
+`;
+
+const CheckBox = styled.div`
+	margin-top: 20px;
+	gap: 10px;
+	span {
 		font-weight: lighter;
 	}
 `;

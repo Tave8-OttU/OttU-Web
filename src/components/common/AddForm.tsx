@@ -7,7 +7,7 @@ import PriceBoxForm from '../Addott/PriceBoxForm';
 import ExplainBox from '../AddPost/ExplainBox';
 import { BlueBtn } from './Buttons';
 
-const AddForm: React.FC<props> = ({ onSubmit, isAddOtt }) => {
+const AddForm: React.FC<props> = ({ onSubmit, isAddOtt, setIsCheck }) => {
 	const [postObj, setPostObj] = React.useState({
 		platformIdx: -1,
 		headcount: 0,
@@ -31,7 +31,11 @@ const AddForm: React.FC<props> = ({ onSubmit, isAddOtt }) => {
 			<Wrapper className="col-container">
 				<BlueBtn type="submit">{isAddOtt ? '추가' : '작성'}</BlueBtn>
 				<PriceBoxForm postObj={postObj} onClickHandler={onClickHandler} />
-				{isAddOtt ? <DateBoxForm setDate={setDate} /> : <ExplainBox />}
+				{isAddOtt ? (
+					<DateBoxForm setDate={setDate} />
+				) : (
+					setIsCheck && <ExplainBox setIsCheck={setIsCheck} />
+				)}
 			</Wrapper>
 		</Body>
 	);
@@ -44,6 +48,7 @@ interface props {
 		paymentDay: number
 	) => void;
 	isAddOtt: boolean;
+	setIsCheck?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Wrapper = styled.div`
@@ -51,7 +56,7 @@ const Wrapper = styled.div`
 	span {
 		font-weight: bold;
 	}
-	button {
+	& > button {
 		width: 100px;
 		text-align: center;
 		align-self: flex-end;
