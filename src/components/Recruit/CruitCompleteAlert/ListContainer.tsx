@@ -10,7 +10,7 @@ const ListContainer: React.FC<props> = ({ rid }) => {
 	const [memberList, setMemberList] = React.useState<userType[]>([]);
 	React.useEffect(() => {
 		axios.get(`/recruit/${rid}/members`).then((res) => {
-			setMemberList(res.data.members);
+			setMemberList(res.data.members.map((it: { user: userType }) => it.user));
 		});
 	}, []);
 
