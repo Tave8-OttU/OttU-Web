@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 interface props {
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	isNoneBG?: boolean;
 }
-const Modal: React.FC<props> = ({ setIsOpen, children }) => {
+const Modal: React.FC<props> = ({ setIsOpen, children, isNoneBG }) => {
 	const wrapperRef = useRef<HTMLImageElement>(null);
 
 	const handleClickOutside = (event: MouseEvent) => {
@@ -22,7 +23,7 @@ const Modal: React.FC<props> = ({ setIsOpen, children }) => {
 
 	return (
 		<>
-			<Bg />
+			{!isNoneBG && <Bg />}
 			<Contaienr ref={wrapperRef}>{children}</Contaienr>
 		</>
 	);
@@ -35,5 +36,6 @@ const Bg = styled.div`
 	background-color: #00000050;
 	top: 0;
 	left: 0;
+	z-index: 1;
 `;
 const Contaienr = styled.div``;

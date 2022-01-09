@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { RootState } from '../../modules';
 import GenreBox from './GenreBox';
 import LevelBox from './LevelBox';
 import Modal from './Modal';
@@ -40,4 +38,5 @@ const Container = styled.div`
 	border-radius: 10px;
 	display: flex;
 	gap: 20px;
+	z-index: 2;
 `;
