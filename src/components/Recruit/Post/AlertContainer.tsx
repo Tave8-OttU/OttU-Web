@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { recruitPost } from '../Content';
 import CruitAlert from '../CruitAlert/CruitAlert';
 import JoinAlert from '../JoinAlert/JoinAlert';
 interface props {
@@ -11,7 +10,7 @@ const AlertContainer: React.FC<props> = ({ idx, isWriter, setIsOpen }) => {
 	return (
 		<>
 			{isWriter ? (
-				<CruitAlert idx={idx} setIsOpen={setIsOpen} />
+				<CruitAlert setIsOpen={setIsOpen} />
 			) : (
 				<JoinAlert idx={idx} setIsOpen={setIsOpen} />
 			)}

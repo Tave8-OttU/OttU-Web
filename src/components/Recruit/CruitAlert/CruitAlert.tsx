@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -10,18 +11,17 @@ import Head from './Head';
 import ListContainer from './ListContainer';
 interface props {
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-	idx: number;
 }
-const CruitAlert: React.FC<props> = ({ setIsOpen, idx }) => {
-	const { postList } = useSelector((state: RootState) => state.recruitList);
-	const post = postList[idx].postObj;
-	const [isCompletion, setIsCompletion] = React.useState(
-		post.choiceNum === post.headcount
+const CruitAlert: React.FC<props> = ({ setIsOpen }) => {
+	const { postList, currentIdx } = useSelector(
+		(state: RootState) => state.recruitList
 	);
+	const post = postList[currentIdx].postObj;
+	const [isCompleted, setIsCompleted] = React.useState(post.isCompleted);
 
 	return (
 		<Modal setIsOpen={setIsOpen}>
-			{isCompletion ? (
+			{isCompleted ? (
 				<CruitCompleteAlert
 					setIsOpen={setIsOpen}
 					rid={post.recruitIdx}
@@ -34,7 +34,7 @@ const CruitAlert: React.FC<props> = ({ setIsOpen, idx }) => {
 					<BtnGroup
 						postObj={post}
 						setIsOpen={setIsOpen}
-						setIsCompletion={setIsCompletion}
+						setIsCompleted={setIsCompleted}
 					/>
 				</Container>
 			)}
@@ -57,4 +57,5 @@ const Container = styled.div`
 	left: 50%;
 	gap: 20px;
 	transform: translate(-50%, -50%);
+	z-index: 1;
 `;

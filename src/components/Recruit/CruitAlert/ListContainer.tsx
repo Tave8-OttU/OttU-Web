@@ -17,7 +17,11 @@ const ListContainer: React.FC<props> = ({ postObj }) => {
 	return (
 		<Container className="col-container">
 			{waitList.map((wait: waitList) => (
-				<JoinList userObj={wait.user} isJoin={wait.isAccepted} />
+				<JoinList
+					waitIdx={wait.waitlistIdx}
+					userIdx={wait.user.userIdx}
+					isJoin={wait.isAccepted}
+				/>
 			))}
 		</Container>
 	);
