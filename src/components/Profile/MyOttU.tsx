@@ -7,11 +7,11 @@ const MyOttU: React.FC = () => {
 		<Container>
 			<h3>나의 OttU</h3>
 			<Menu className="col-container">
-				<Link to={`/edit/profile/`}>
+				<Link to={`/profile/mypost`}>
 					내가 작성한 모집글
 					<img src={arrow} width="15px" />
 				</Link>
-				<Link to={'/myott/default'}>
+				<Link to={'/myott'}>
 					내가 이용하는 OTT 서비스
 					<img src={arrow} width="15px" />
 				</Link>
@@ -23,7 +23,7 @@ export default MyOttU;
 export const Menu = styled.div`
 	font-size: small;
 	background-color: #00000075;
-	border: solid thin #45c7ff;
+	border: solid thin #45c7ff50;
 	padding: 20px;
 	border-radius: 5px;
 	color: white;
