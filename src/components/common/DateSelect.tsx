@@ -16,7 +16,7 @@ const DateSelect: React.FC<props> = ({ setDate }) => {
 		<Wrapper className="row-container">
 			매월
 			<Select onChange={onChange}>
-				<option value="defalut" selected hidden>
+				<option value="default" selected hidden>
 					일자
 				</option>
 				{Array(30)
@@ -49,8 +49,8 @@ const Wrapper = styled.div`
 	gap: 10px;
 `;
 const Btn = styled.button`
-	position: absolute;
 	color: #45c7ff;
-	transform: translate(50%, 1.3vw);
 	z-index: 0;
+	width: 0px;
+	transform: translate(-35px);
 `;
