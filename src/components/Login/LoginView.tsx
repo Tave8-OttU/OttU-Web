@@ -19,7 +19,7 @@ const LoginView: React.FC = () => {
 };
 export default LoginView;
 const Container = styled.div`
-	padding: 20%;
+	padding-right: 20%;
 	padding-bottom: 10%;
 	font-weight: lighter;
 	span {
@@ -29,6 +29,9 @@ const Container = styled.div`
 	p {
 		width: 60%;
 		line-height: 2;
+	}
+	a {
+		cursor: pointer;
 	}
 	align-items: flex-end;
 `;

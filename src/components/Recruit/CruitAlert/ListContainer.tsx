@@ -1,8 +1,7 @@
-import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
+import { getWaitListHandler } from '../../../apis/api/recurit';
 import { userType } from '../../common/NickName';
-import { recruitPost } from '../Content';
 import JoinList from './JoinList';
 interface props {
 	rid: number;
@@ -10,8 +9,8 @@ interface props {
 const ListContainer: React.FC<props> = ({ rid }) => {
 	const [waitList, setWaitList] = React.useState([]);
 	React.useEffect(() => {
-		axios.get(`/recruit/${rid}/waitlist`).then((res) => {
-			setWaitList(res.data.waitlist);
+		getWaitListHandler(rid).then((res) => {
+			setWaitList(res.waitlist);
 		});
 	}, []);
 

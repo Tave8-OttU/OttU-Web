@@ -1,6 +1,6 @@
-import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
+import { getWaitListHandler } from '../../apis/api/recurit';
 import { GrayBGBtn } from '../common/Buttons';
 import { DarkGrayLabel } from '../common/Labels';
 interface props {
@@ -18,10 +18,11 @@ const BtnGroup: React.FC<props> = ({
 	const [isTeam, setIsTeem] = React.useState(false);
 	React.useEffect(() => {
 		isWriter &&
-			axios.get(`/recruit/${rid}/waitlist`).then((res) => {
-				setIsTeem(res.data.isTeam);
+			getWaitListHandler(rid).then((res) => {
+				setIsTeem(res.isTeam);
 			});
-	}, []);
+	}, [rid]);
+
 	return (
 		<>
 			{isWriter && !isTeam && (

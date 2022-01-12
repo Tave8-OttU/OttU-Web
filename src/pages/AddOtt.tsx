@@ -1,8 +1,8 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import { postMyOttHandler } from '../apis/api/ott';
 import { Otts } from '../assets/Objects/otts';
 import AddForm from '../components/common/AddForm';
 import Head from '../components/common/Head';
@@ -26,16 +26,9 @@ const AddOtt: React.FC = () => {
 			) {
 				throw new Error('모든 내용이 선택되었는지 확인해주세요.');
 			}
-			axios
-				.post(`/user/ott`, {
-					...postObj,
-					platformIdx: postObj.platformIdx + 1,
-					userIdx: userObj.userIdx,
-					paymentDay: paymentDay,
-				})
-				.then((res) => {
-					res.status === 201 && navigate(`/myott/${Otts[postObj.platformIdx]}`);
-				});
+			postMyOttHandler(userObj.userIdx, postObj, paymentDay).then((res) => {
+				navigate(`/myott/${Otts[postObj.platformIdx]}`);
+			});
 		} catch (err: any) {
 			alert(err.message);
 		}

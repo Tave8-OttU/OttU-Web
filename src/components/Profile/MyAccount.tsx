@@ -1,14 +1,14 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Menu } from './MyOttU';
+import { withDrawUserHandler } from '../../apis/api/user';
 import arrow from '../../assets/images/arrow.png';
-import { kakaoLogoutHandler } from '../../utils/KakaoLogin';
-import { useDispatch, useSelector } from 'react-redux';
-import { setLoggedInfo } from '../../modules/user';
-import axios from 'axios';
 import { RootState } from '../../modules';
-import { useNavigate } from 'react-router';
+import { setLoggedInfo } from '../../modules/user';
+import { kakaoLogoutHandler } from '../../utils/KakaoLogin';
+import { Menu } from './MyOttU';
 const MyAccount: React.FC = () => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 	const navigate = useNavigate();
@@ -16,10 +16,8 @@ const MyAccount: React.FC = () => {
 
 	const onClickLogoutHandler = () => {
 		kakaoLogoutHandler().then((res: any) => {
-			if (res.status === 200) {
-				dispatch(setLoggedInfo(null, false));
-				navigate('/');
-			}
+			dispatch(setLoggedInfo(null, false));
+			navigate('/');
 		});
 	};
 	const onClickWithDraw = () => {
@@ -28,7 +26,7 @@ const MyAccount: React.FC = () => {
 				'정말 오뜨유 서비스 회원을 탈퇴하시겠습니까?\n모든 정보와 팀이 해제됩니다.'
 			)
 		) {
-			axios.delete(`/user/${userObj.userIdx}`).then(() => {
+			withDrawUserHandler(userObj.userIdx).then(() => {
 				onClickLogoutHandler();
 			});
 		}

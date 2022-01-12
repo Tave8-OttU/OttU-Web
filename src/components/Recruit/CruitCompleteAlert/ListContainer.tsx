@@ -1,6 +1,6 @@
-import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
+import { getConfirmMemHandler } from '../../../apis/api/recurit';
 import { userType } from '../../common/NickName';
 import MemberList from './MemberList';
 interface props {
@@ -9,8 +9,8 @@ interface props {
 const ListContainer: React.FC<props> = ({ rid }) => {
 	const [memberList, setMemberList] = React.useState<userType[]>([]);
 	React.useEffect(() => {
-		axios.get(`/recruit/${rid}/members`).then((res) => {
-			setMemberList(res.data.members.map((it: { user: userType }) => it.user));
+		getConfirmMemHandler(rid).then((res) => {
+			setMemberList(res.members.map((it: { user: userType }) => it.user));
 		});
 	}, []);
 

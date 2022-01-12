@@ -1,8 +1,8 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components';
+import { patchUserHandler } from '../apis/api/user';
 import Head from '../components/common/Head';
 import EditGenre from '../components/EditProfile/EditGenre';
 import EditKakaoId from '../components/EditProfile/EditKakaoId';
@@ -30,12 +30,12 @@ const EditProfile: React.FC = () => {
 			if (type === 'nickname' && !isCheckAll) {
 				throw new Error('입력 사항을 다 확인해주세요.');
 			}
-			axios
-				.patch(`/user/${userObj.userIdx}`, { [type ? type : '']: infoObj })
-				.then((res) => {
+			patchUserHandler(userObj.userIdx, { [type ? type : '']: infoObj }).then(
+				(res) => {
 					dispatch(setUserInfo({ ...userObj, [type ? type : '']: infoObj }));
 					navigate('/');
-				});
+				}
+			);
 		} catch (err: any) {
 			alert(err.message);
 		}

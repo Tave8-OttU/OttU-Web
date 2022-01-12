@@ -42,6 +42,7 @@ const Btn = styled.button`
 	padding: 10px;
 	box-shadow: 20px 20px 20px 10px #00000025;
 	transition: 0.3s;
+	z-index: 1;
 	&:hover {
 		border-radius: 50px;
 		width: 180px;

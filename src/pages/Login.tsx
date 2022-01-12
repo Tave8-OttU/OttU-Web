@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
-import logo from '../assets/images/logo_s.png';
+import logo from '../assets/images/randing2.png';
+import text from '../assets/images/randingText.png';
 import randing from '../assets/images/randing.png';
 import LoginView from '../components/Login/LoginView';
 import Head from '../components/Setting/Head';
@@ -18,7 +19,7 @@ const Login: React.FC = () => {
 	React.useEffect(() => {
 		if (code) {
 			kakaoLoginHandler(code).then((res: any) => {
-				loginInfoHandler(res.data.user, res.data.jwt);
+				loginInfoHandler(res.user, res.jwt);
 			});
 		}
 	}, []);
@@ -38,15 +39,14 @@ const Login: React.FC = () => {
 		<Container>
 			<Head />
 			<Body className="row-container">
-				<Wrapper className="container">
-					<img src={randing} width="70%" />
-				</Wrapper>
+				<LeftWrapper>
+					<img src={randing} width="80%" />
+				</LeftWrapper>
 				<Wrapper className="col-container">
 					<TextView>
-						<h1>OTT 통합 관리 서비스 플랫폼</h1>
-						<h2>OttU</h2>
+						<img src={text} width="50%" />
 					</TextView>
-					<img src={logo} width="30%" />
+					<img src={logo} width="50%" />
 					<LoginView />
 				</Wrapper>
 			</Body>
@@ -70,8 +70,17 @@ const TextView = styled.div`
 		color: #45c7ff;
 	}
 `;
-const Body = styled.div``;
+const Body = styled.div`
+	gap: 100px;
+`;
 const Wrapper = styled.div`
 	flex: 0.5;
+	margin-top: 50px;
+`;
+const LeftWrapper = styled.div`
+	flex: 0.5;
+	display: flex;
+	justify-content: flex-end;
+	align-self: flex-start;
 	margin-top: 50px;
 `;

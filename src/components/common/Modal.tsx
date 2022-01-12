@@ -38,4 +38,6 @@ const Bg = styled.div`
 	left: 0;
 	z-index: 1;
 `;
-const Contaienr = styled.div``;
+const Contaienr = styled.div`
+	z-index: 2;
+`;

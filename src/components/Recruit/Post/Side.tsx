@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';

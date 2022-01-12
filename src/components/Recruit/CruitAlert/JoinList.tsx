@@ -1,7 +1,7 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { acceptCancelHandler, acceptHandler } from '../../../apis/api/recurit';
 import { RootState } from '../../../modules';
 import { accept } from '../../../modules/recruitList';
 import { BlueBtn, GrayBtn } from '../../common/Buttons';
@@ -18,24 +18,15 @@ const JoinList: React.FC<props> = ({ waitIdx, userIdx, isJoin }) => {
 	const dispatch = useDispatch();
 	const onClickHandler = () => {
 		isAccepted
-			? axios
-					.patch(`/recruit/waitlist/cancel`, { waitlistIdx: waitIdx })
-					.then((res) => {
-						if (res.status === 200) {
-							setIsAccepted(false);
-							dispatch(accept(currentIdx, false));
-						}
-					})
-			: axios
-					.patch(`/recruit/waitlist/accept`, { waitlistIdx: waitIdx })
-					.then((res) => {
-						res.status === 400 &&
-							alert('정원 이하의 참여자만 수락 가능합니다.');
-						if (res.status === 200) {
-							setIsAccepted(true);
-							dispatch(accept(currentIdx, true));
-						}
-					});
+			? acceptCancelHandler(waitIdx).then((res) => {
+					setIsAccepted(false);
+					dispatch(accept(currentIdx, false));
+			  })
+			: acceptHandler(waitIdx).then((res) => {
+					res.status === 400 && alert('정원 이하의 참여자만 수락 가능합니다.');
+					setIsAccepted(true);
+					dispatch(accept(currentIdx, true));
+			  });
 	};
 	return (
 		<Container className="row-container">

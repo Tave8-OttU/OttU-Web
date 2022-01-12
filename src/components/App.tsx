@@ -14,7 +14,7 @@ const App = () => {
 		if (isLoggedin) {
 			autoLoginHandler().catch((err) => {
 				kakaoLogoutHandler().then((res: any) => {
-					res.status === 200 && dispatch(setLoggedInfo(null, false));
+					dispatch(setLoggedInfo(null, false));
 				});
 			});
 		}

@@ -1,8 +1,11 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import {
+	delRecruitHandler,
+	getConfirmMemHandler,
+} from '../../../apis/api/recurit';
 import { RootState } from '../../../modules';
 import { completion } from '../../../modules/recruitList';
 import { GrayBorderBtn, RedBorderBtn } from '../../common/Buttons';
@@ -18,14 +21,14 @@ const BtnGroup: React.FC<props> = ({ postObj, setIsOpen, setIsCompleted }) => {
 
 	const navigate = useNavigate();
 	const onDelClickHandler = () => {
-		axios.delete(`/recruit/${postObj.recruitIdx}`).then((res) => {
-			res.status === 200 && navigate('/');
+		delRecruitHandler(postObj.recruitIdx).then((res) => {
+			navigate('/');
 		});
 	};
 
 	const dispatch = useDispatch();
 	const onCompleteClickHandler = () => {
-		axios.get(`/recruit/${postObj.recruitIdx}/members`).then((res) => {
+		getConfirmMemHandler(postObj.recruitIdx).then((res) => {
 			setIsCompleted(true);
 			dispatch(completion(currentIdx));
 		});

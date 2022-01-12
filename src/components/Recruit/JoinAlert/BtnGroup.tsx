@@ -1,7 +1,7 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { applyHandler } from '../../../apis/api/recurit';
 import { RootState } from '../../../modules';
 import { participate } from '../../../modules/recruitList';
 import { GrayBorderBtn, RedBorderBtn } from '../../common/Buttons';
@@ -14,17 +14,10 @@ const BtnGroup: React.FC<props> = ({ setIsOpen, postObj }) => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 	const dispatch = useDispatch();
 	const onClickHandler = () => {
-		axios
-			.post(`/recruit/participate`, {
-				recruitIdx: postObj.recruitIdx,
-				userIdx: userObj.userIdx,
-			})
-			.then((res) => {
-				if (res.status === 200) {
-					setIsOpen(false);
-					dispatch(participate(postObj.recruitIdx));
-				}
-			});
+		applyHandler(postObj.recruitIdx, userObj.userIdx).then((res) => {
+			setIsOpen(false);
+			dispatch(participate(postObj.recruitIdx));
+		});
 	};
 	return (
 		<Container className="row-container">

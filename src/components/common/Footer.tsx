@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/images/logo_s.png';

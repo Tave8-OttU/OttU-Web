@@ -11,7 +11,7 @@ const KakaoIdForm: React.FC<props> = ({ kakaotalkId, onChangeHandler }) => {
 			<input
 				type="text"
 				placeholder="카카오톡 아이디"
-				name="kakaotalk_id"
+				name="kakaotalkId"
 				value={kakaotalkId}
 				onChange={onChangeHandler}
 				required

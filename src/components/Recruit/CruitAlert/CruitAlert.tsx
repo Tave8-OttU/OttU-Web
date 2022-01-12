@@ -1,10 +1,8 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../../modules';
 import Modal from '../../common/Modal';
-import { recruitPost } from '../Content';
 import CruitCompleteAlert from '../CruitCompleteAlert/CruitCompleteAlert';
 import BtnGroup from './BtnGroup';
 import Head from './Head';

@@ -2,7 +2,7 @@
   "name": "ottu",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://ec2-13-209-81-234.ap-northeast-2.compute.amazonaws.com/",
+  "proxy":"http://ec2-3-36-58-20.ap-northeast-2.compute.amazonaws.com/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",

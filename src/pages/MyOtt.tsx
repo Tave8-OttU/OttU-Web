@@ -1,8 +1,9 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
+import { getUserOttHandler } from '../apis/api/ott';
+import { getCurrOtt } from '../apis/services/ott';
 import Head from '../components/common/Head';
 import WriteBtn from '../components/common/WriteBtn';
 import Content from '../components/Myott/Content';
@@ -15,13 +16,9 @@ const MyOtt: React.FC = () => {
 
 	const [ottList, setOttList] = React.useState<ott[]>([]);
 	React.useEffect(() => {
-		axios.get(`/user/${userObj.userIdx}/ott`).then((res) => {
-			setOttList(res.data.ottlist);
-			!ott
-				? setOttObj(res.data.ottlist[0])
-				: res.data.ottlist.map(
-						(it: ott) => it.platform.platformName === ott && setOttObj(it)
-				  );
+		getUserOttHandler(userObj.userIdx).then((res) => {
+			setOttList(res.ottlist);
+			getCurrOtt(res, ott).then((res) => setOttObj(res));
 		});
 	}, [ott]);
 

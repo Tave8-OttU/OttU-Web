@@ -1,6 +1,6 @@
-import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
+import { nickCheckHandler } from '../../apis/api/user';
 import { WhiteRoundBtn } from '../common/Buttons';
 
 interface props {
@@ -13,12 +13,10 @@ const NickNameForm: React.FC<props> = ({
 	onChangeHandler,
 	setIsCheckAll,
 }) => {
-	const [isExisted, setIsExisted] = React.useState(false);
 	const [notice, setNotice] = React.useState('');
 	const onCheckHandler = () => {
-		axios.get(`/user/nickname/${nickname}`).then((res) => {
-			setIsExisted(res.data.isExisted);
-			if (res.data.isExisted) {
+		nickCheckHandler(nickname).then((res) => {
+			if (res.isExisted) {
 				setNotice('이미 사용 중인 닉네임입니다.');
 				setIsCheckAll(false);
 			} else {

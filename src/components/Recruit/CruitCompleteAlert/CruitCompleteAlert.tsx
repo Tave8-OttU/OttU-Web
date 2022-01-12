@@ -1,8 +1,8 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import { getWaitListHandler } from '../../../apis/api/recurit';
+import { postTeamHandler } from '../../../apis/api/team';
 import { RootState } from '../../../modules';
 import { BlueBtn, GrayBorderBtn } from '../../common/Buttons';
 import Modal from '../../common/Modal';
@@ -18,20 +18,14 @@ const CruitCompleteAlert: React.FC<props> = ({ setIsOpen, rid, platform }) => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 	const [date, setDate] = React.useState(0);
 	const onSubmit = () => {
-		axios
-			.post(`/team`, {
-				recruitIdx: rid,
-				userIdx: userObj.userIdx,
-				paymentDay: date,
-			})
-			.then((res) => {
-				res.status === 201 && setIsOpen(false);
-			});
+		postTeamHandler(rid, userObj.userIdx, date).then((res) => {
+			setIsOpen(false);
+		});
 	};
 	const [isTimeOut, setIsTimeOut] = React.useState(false);
 	React.useEffect(() => {
-		axios.get(`/recruit/${rid}/waitlist`).then((res) => {
-			setIsTimeOut(res.data.timeout);
+		getWaitListHandler(rid).then((res) => {
+			setIsTimeOut(res.timeout);
 		});
 	}, []);
 	return (
@@ -72,4 +66,5 @@ const Container = styled.form`
 	left: 50%;
 	gap: 30px;
 	transform: translate(-50%, -50%);
+	z-index: 1;
 `;

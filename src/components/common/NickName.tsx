@@ -1,6 +1,6 @@
-import axios from 'axios';
 import * as React from 'react';
 import styled from 'styled-components';
+import { getUserHandler } from '../../apis/api/user';
 import { genreType } from './GenreBox';
 import ProfileModal from './ProfileModal';
 interface props {
@@ -13,8 +13,8 @@ const NickName: React.FC<props> = ({ userIdx }) => {
 	};
 	const [user, setUser] = React.useState<userType>();
 	React.useEffect(() => {
-		axios.get(`/user/${userIdx}`).then((res) => {
-			setUser(res.data.user);
+		getUserHandler(userIdx).then((res) => {
+			setUser(res.user);
 		});
 	}, [userIdx]);
 	return (

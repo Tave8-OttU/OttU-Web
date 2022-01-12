@@ -1,7 +1,7 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import { delTeamHandler } from '../../apis/api/team';
 import { ott } from '../../pages/MyOtt';
 interface props {
 	ottObj: ott;
@@ -14,8 +14,8 @@ const DateContainer: React.FC<props> = ({ ottObj }) => {
 				'오뜨유 해당 ott를 해지하시겠습니까?\n[ 팀의 경우, 해지 시 모든 팀원의 ott도 해지됩니다. ]\n \n해지후, 알림에서 팀원 평가가 이뤄집니다.'
 			)
 		) {
-			axios.delete(`/team/${ottObj.teamIdx}`).then((res) => {
-				res.status === 200 && navigate('/');
+			delTeamHandler(ottObj.teamIdx).then((res) => {
+				navigate('/');
 			});
 		}
 	};

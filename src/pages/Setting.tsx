@@ -1,13 +1,13 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { getUserHandler, patchUserHandler } from '../apis/api/user';
+import logo from '../assets/images/logo_s.png';
 import { BlueBtn } from '../components/common/Buttons';
 import Head from '../components/Setting/Head';
 import SettingForm from '../components/Setting/SettingForm';
-import logo from '../assets/images/logo_s.png';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import { setUserInfo } from '../modules/user';
+import { setSettingInfo, setUserInfo } from '../modules/user';
 const Setting: React.FC = () => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 	const dispatch = useDispatch();
@@ -31,16 +31,15 @@ const Setting: React.FC = () => {
 			if (!isCheckAll) {
 				throw new Error('입력 사항을 다 확인해주세요.');
 			}
-			axios
-				.patch(`/user/${userObj.userIdx}`, {
-					...infoObj,
-					genres: genreArr,
-				})
-				.then((res) => {
-					axios
-						.get(`/user/${userObj.userIdx}`)
-						.then((res) => dispatch(setUserInfo(res.data.user)));
+			patchUserHandler(userObj.userIdx, {
+				...infoObj,
+				genres: genreArr,
+			}).then(() => {
+				getUserHandler(userObj.userIdx).then((res) => {
+					dispatch(setUserInfo(res.user));
+					dispatch(setSettingInfo(true));
 				});
+			});
 		} catch (err: any) {
 			alert(err.message);
 		}

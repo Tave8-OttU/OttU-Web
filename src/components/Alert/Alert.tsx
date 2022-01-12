@@ -1,7 +1,7 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { getUserAlertHandler } from '../../apis/api/user';
 import { RootState } from '../../modules';
 import Modal from '../common/Modal';
 import AlertCard from './AlertCard';
@@ -13,10 +13,8 @@ const Alert: React.FC<props> = ({ setIsOpen }) => {
 
 	const [alertArr, setAlertArr] = React.useState<alertType[]>([]);
 	React.useEffect(() => {
-		axios.get(`/user/${userObj.userIdx}/notice`).then((res) => {
-			console.log(res.data);
-
-			setAlertArr(res.data.noticelist);
+		getUserAlertHandler(userObj.userIdx).then((res) => {
+			setAlertArr(res.noticelist);
 		});
 	}, []);
 

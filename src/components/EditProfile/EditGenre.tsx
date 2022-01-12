@@ -1,8 +1,8 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import { getUserHandler, patchUserHandler } from '../../apis/api/user';
 import { RootState } from '../../modules';
 import { setUserInfo } from '../../modules/user';
 import { BlueBtn } from '../common/Buttons';
@@ -15,14 +15,12 @@ const EditGenre: React.FC = () => {
 	const onSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
 		try {
-			axios
-				.patch(`/user/${userObj.userIdx}`, { genres: genreArr })
-				.then((res) => {
-					axios
-						.get(`/user/${userObj.userIdx}`)
-						.then((res) => dispatch(setUserInfo(res.data.user)));
-					navigate('/');
-				});
+			patchUserHandler(userObj.userIdx, { genres: genreArr }).then((res) => {
+				getUserHandler(userObj.userIdx).then((res) =>
+					dispatch(setUserInfo(res.user))
+				);
+				navigate('/');
+			});
 		} catch (err: any) {
 			alert(err.message);
 		}

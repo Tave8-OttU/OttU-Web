@@ -1,11 +1,11 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import { getUserOttHandler } from '../../apis/api/ott';
+import { getMyOttListName } from '../../apis/services/ott';
 import { Otts } from '../../assets/Objects/otts';
 import { RootState } from '../../modules';
-import { ott } from '../../pages/MyOtt';
 import OttImg from '../common/OttImg';
 import Guide from './Guide';
 const MainContainer: React.FC = () => {
@@ -27,11 +27,9 @@ const MainContainer: React.FC = () => {
 
 	const [myOttList, setMyOttList] = React.useState<string[]>([]);
 	React.useEffect(() => {
-		axios.get(`/user/${userObj.userIdx}/ott`).then((res) => {
-			setMyOttList(
-				res.data.ottlist.map((ott: ott) => ott.platform.platformName)
-			);
-		});
+		getUserOttHandler(userObj.userIdx)
+			.then(getMyOttListName)
+			.then((res) => setMyOttList(res));
 	}, []);
 
 	return (

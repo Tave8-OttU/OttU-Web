@@ -1,11 +1,10 @@
-import axios from 'axios';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { evalueTeamHandler, getMemberHandler } from '../../apis/api/team';
 import { RootState } from '../../modules';
 import { BlueBtn } from '../common/Buttons';
 import Modal from '../common/Modal';
-import OttImg from '../common/OttImg';
 import EvaluationHead from './EvaluationHead';
 import MemberBox from './MemberBox';
 interface props {
@@ -18,21 +17,16 @@ const EvaluationBox: React.FC<props> = ({ teamIdx, setIsOpen, ott }) => {
 	const [memberList, setMemberList] = React.useState<member[]>([]);
 	const [reliability, setReliability] = React.useState<number[]>([]);
 	React.useEffect(() => {
-		axios.get(`/team/${teamIdx}/evaluation/${userObj.userIdx}`).then((res) => {
-			setMemberList(res.data.userlist);
-			setReliability(Array(res.data.userlist.length).fill(10));
+		getMemberHandler(teamIdx, userObj.userIdx).then((res) => {
+			setMemberList(res.userlist);
+			setReliability(Array(res.userlist.length).fill(10));
 		});
 	}, []);
 
 	const onClickHandler = () => {
-		axios
-			.post(`/team/${teamIdx}/evaluation`, {
-				userIdx: userObj.userIdx,
-				reliability: reliability,
-			})
-			.then((res) => {
-				res.status === 200 && setIsOpen(false);
-			});
+		evalueTeamHandler(teamIdx, userObj.userIdx, reliability).then((res) => {
+			setIsOpen(false);
+		});
 	};
 
 	return (
