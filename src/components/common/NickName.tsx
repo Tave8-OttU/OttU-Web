@@ -37,6 +37,7 @@ export interface userType {
 	nickname: string;
 	reliability: number;
 	genres: genreType[];
+	isFirst: boolean;
 }
 const Container = styled.button`
 	font-size: medium;

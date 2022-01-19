@@ -1,9 +1,9 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import { Prices } from '../../assets/Objects/otts';
-import { ott } from '../../pages/MyOtt';
-import PriceInfo from '../common/PriceInfo';
-import TeamInfo from '../common/TeamInfo';
+import * as React from "react";
+import styled from "styled-components";
+import { Prices } from "../../assets/Objects/otts";
+import PriceInfo from "../common/PriceInfo";
+import TeamInfo from "../common/TeamInfo";
+import { ott } from "./MainContainer";
 interface props {
 	ottObj: ott;
 }
@@ -16,8 +16,12 @@ const PriceContainer: React.FC<props> = ({ ottObj }) => {
 		<Container>
 			<Label>요금제</Label>
 			<BoxWrapper className="row-container">
-				<PriceInfo type={ott ? ott.title : ''} price={ott ? ott.price : 0} />
-				<TeamInfo people={headcount} price={ott ? ott.price / headcount : 0} />
+				<PriceInfo type={ott ? ott.title : ""} price={ott ? ott.price : 0} />
+				<TeamInfo
+					team={ottObj.teamName}
+					people={headcount}
+					price={ott ? ott.price / headcount : 0}
+				/>
 			</BoxWrapper>
 		</Container>
 	);

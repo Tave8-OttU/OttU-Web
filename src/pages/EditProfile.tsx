@@ -14,12 +14,15 @@ const EditProfile: React.FC = () => {
 	const { userObj } = useSelector((state: RootState) => state.user);
 
 	const [infoObj, setInfoObj] = React.useState('');
-	const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const {
-			target: { value },
-		} = event;
-		setInfoObj(value);
-	};
+	const onChangeHandler = React.useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>) => {
+			const {
+				target: { value },
+			} = event;
+			setInfoObj(value);
+		},
+		[]
+	);
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -73,9 +76,6 @@ const EditProfile: React.FC = () => {
 	);
 };
 export default EditProfile;
-const Label = styled.h3`
-	margin-top: 0;
-`;
 const Container = styled.div``;
 const Body = styled.div`
 	display: flex;
@@ -86,3 +86,7 @@ const Body = styled.div`
 	border-radius: 10px;
 	box-shadow: 20px 20px 20px 10px #00000025;
 `;
+
+const Label = React.memo(styled.h3`
+	margin-top: 0;
+`);

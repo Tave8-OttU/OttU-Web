@@ -39,10 +39,11 @@ const BtnGroup: React.FC<props> = ({
 };
 export default BtnGroup;
 const JoinBtn = styled.button`
-	background-color: #ffa49e80;
+	background-color: #ffffff;
+	color: #00000080;
 	border-radius: 5px;
 	padding: 10px 20px;
 	&:hover {
-		background-color: #ffa49e;
+		background-color: #ffffff90;
 	}
 `;

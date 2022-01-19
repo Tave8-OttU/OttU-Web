@@ -30,7 +30,7 @@ const PriceBoxForm: React.FC<props> = ({ postObj, onClickHandler }) => {
 		</Container>
 	);
 };
-export default PriceBoxForm;
+export default React.memo(PriceBoxForm);
 const Container = styled.div`
 	background-color: #00000030;
 	padding: 20px;

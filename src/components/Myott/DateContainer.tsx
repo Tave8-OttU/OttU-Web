@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { useNavigate } from 'react-router';
-import styled from 'styled-components';
-import { delTeamHandler } from '../../apis/api/team';
-import { ott } from '../../pages/MyOtt';
+import * as React from "react";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
+import { delTeamHandler } from "../../apis/api/team";
+import { ott } from "./MainContainer";
 interface props {
 	ottObj: ott;
 }
@@ -11,11 +11,11 @@ const DateContainer: React.FC<props> = ({ ottObj }) => {
 	const onDelClickHandler = () => {
 		if (
 			window.confirm(
-				'오뜨유 해당 ott를 해지하시겠습니까?\n[ 팀의 경우, 해지 시 모든 팀원의 ott도 해지됩니다. ]\n \n해지후, 알림에서 팀원 평가가 이뤄집니다.'
+				"오뜨유 해당 ott를 해지하시겠습니까?\n[ 팀의 경우, 해지 시 모든 팀원의 ott도 해지됩니다. ]\n \n해지후, 알림에서 팀원 평가가 이뤄집니다."
 			)
 		) {
 			delTeamHandler(ottObj.teamIdx).then((res) => {
-				navigate('/');
+				navigate("/");
 			});
 		}
 	};

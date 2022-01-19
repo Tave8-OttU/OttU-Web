@@ -33,7 +33,7 @@ const Profile: React.FC<props> = ({ setIsOpen }) => {
 		<Container>
 			<ProfileContainer className="col-container" ref={wrapperRef}>
 				<h2>{userObj.nickname}</h2>
-				<LevelBox reliability={userObj.reliability} />
+				<LevelBox reliability={userObj.reliability} isFirst={userObj.isFirst} />
 				<GenreBox genres={userObj.genres} />
 				<MyOttU />
 				<MyInfo />

@@ -1,14 +1,13 @@
-import * as React from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { Prices } from '../../../assets/Objects/otts';
-import { RootState } from '../../../modules';
-import Modal from '../../common/Modal';
-import PriceInfo from '../../common/PriceInfo';
-import TeamInfo from '../../common/TeamInfo';
-import { recruitPost } from '../Content';
-import BtnGroup from './BtnGroup';
-import NoticeContainer from './NoticeContainer';
+import * as React from "react";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import { Prices } from "../../../assets/Objects/otts";
+import { RootState } from "../../../modules";
+import Modal from "../../common/Modal";
+import PriceInfo from "../../common/PriceInfo";
+import TeamInfo from "../../common/TeamInfo";
+import BtnGroup from "./BtnGroup";
+import NoticeContainer from "./NoticeContainer";
 interface props {
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	idx: number;
@@ -25,8 +24,12 @@ const JoinAlert: React.FC<props> = ({ setIsOpen, idx }) => {
 		<Modal setIsOpen={setIsOpen}>
 			<Container>
 				<h2>참여 요청하시겠습까?</h2>
-				<PriceInfo type={ott ? ott.title : ''} price={ott ? ott.price : 0} />
-				<TeamInfo people={headcount} price={ott ? ott.price : 0} />
+				<PriceInfo type={ott ? ott.title : ""} price={ott ? ott.price : 0} />
+				<TeamInfo
+					team={"OttU"}
+					people={headcount}
+					price={ott ? ott.price : 0}
+				/>
 				<NoticeContainer />
 				<BtnGroup setIsOpen={setIsOpen} postObj={post} />
 			</Container>

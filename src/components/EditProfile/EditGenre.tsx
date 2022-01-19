@@ -1,17 +1,22 @@
-import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import styled from 'styled-components';
-import { getUserHandler, patchUserHandler } from '../../apis/api/user';
-import { RootState } from '../../modules';
-import { setUserInfo } from '../../modules/user';
-import { BlueBtn } from '../common/Buttons';
-import { genreType } from '../common/GenreBox';
-import CheckBoxForm from '../Setting/CheckBoxForm';
+import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
+import { getUserHandler, patchUserHandler } from "../../apis/api/user";
+import { RootState } from "../../modules";
+import { setUserInfo } from "../../modules/user";
+import { BlueBtn } from "../common/Buttons";
+import { genreType } from "../common/GenreBox";
+import CheckBoxForm from "../Setting/CheckBoxForm";
 const EditGenre: React.FC = () => {
 	const { userObj } = useSelector((state: RootState) => state.user);
+	const [genreArr, setGenreArr] = React.useState<number[]>(
+		userObj.genres.map((it: genreType) => it.genreIdx)
+	);
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
 	const onSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
 		try {
@@ -19,16 +24,13 @@ const EditGenre: React.FC = () => {
 				getUserHandler(userObj.userIdx).then((res) =>
 					dispatch(setUserInfo(res.user))
 				);
-				navigate('/');
+				navigate("/");
 			});
 		} catch (err: any) {
 			alert(err.message);
 		}
 	};
 
-	const [genreArr, setGenreArr] = React.useState<number[]>(
-		userObj.genres.map((it: genreType) => it.genreIdx)
-	);
 	return (
 		<From className="col-container" onSubmit={onSubmit}>
 			<CheckBoxForm genreArr={genreArr} setGenreArr={setGenreArr} />

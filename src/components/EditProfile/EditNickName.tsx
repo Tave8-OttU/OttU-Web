@@ -35,13 +35,13 @@ const EditNickName: React.FC<props> = ({
 	);
 };
 export default EditNickName;
-export const Prev = styled.div`
+export const Prev = React.memo(styled.div`
 	color: #c2c2c2;
 	border-bottom: solid thin #c2c2c2;
 	padding: 10px;
 	font-size: small;
 	width: 200px;
-`;
+`);
 export const Notice = styled.div`
 	font-size: small;
 	color: #c2c2c2;

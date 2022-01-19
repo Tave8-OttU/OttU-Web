@@ -5,7 +5,7 @@ export const postRecruitHandler = async (
 	postObj: addPostObj
 ) => {
 	try {
-		const { data } = await axios.post('/recruit/upload', {
+		const { data } = await axios.post('/recruit', {
 			...postObj,
 			platformIdx: postObj.platformIdx + 1,
 			userIdx: userIdx,
@@ -39,7 +39,7 @@ export const getRecruitListHandler = async (
 	platformIdx?: string
 ) => {
 	try {
-		const { data } = await axios.get(`/recruit/${platformIdx}/list/${userIdx}`);
+		const { data } = await axios.get(`/recruit/list?pid=${platformIdx}`);
 		return data;
 	} catch (err) {
 		console.log(err);
@@ -73,6 +73,7 @@ export const acceptHandler = async (waitlistIdx: number) => {
 		});
 		return data;
 	} catch (err) {
+		alert('정원 이하의 참여자만 수락 가능합니다.');
 		console.log(err);
 	}
 };

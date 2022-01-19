@@ -12,7 +12,7 @@ const DateBoxForm: React.FC<props> = ({ setDate }) => {
 		</Container>
 	);
 };
-export default DateBoxForm;
+export default React.memo(DateBoxForm);
 const Container = styled.div`
 	& > div {
 		margin-top: 30px;

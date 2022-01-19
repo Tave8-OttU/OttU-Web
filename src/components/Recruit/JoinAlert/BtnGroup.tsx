@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { applyHandler } from '../../../apis/api/recurit';
-import { RootState } from '../../../modules';
-import { participate } from '../../../modules/recruitList';
-import { GrayBorderBtn, RedBorderBtn } from '../../common/Buttons';
-import { recruitPost } from '../Content';
+import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import { applyHandler } from "../../../apis/api/recurit";
+import { RootState } from "../../../modules";
+import { apply } from "../../../modules/recruitList";
+import { GrayBorderBtn, RedBorderBtn } from "../../common/Buttons";
+import { recruitPost } from "../Content";
 interface props {
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	postObj: recruitPost;
@@ -16,7 +16,7 @@ const BtnGroup: React.FC<props> = ({ setIsOpen, postObj }) => {
 	const onClickHandler = () => {
 		applyHandler(postObj.recruitIdx, userObj.userIdx).then((res) => {
 			setIsOpen(false);
-			dispatch(participate(postObj.recruitIdx));
+			dispatch(apply(postObj.recruitIdx));
 		});
 	};
 	return (

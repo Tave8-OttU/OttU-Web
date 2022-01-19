@@ -37,7 +37,7 @@ const Post: React.FC<props> = ({ idx, isMyPost }) => {
 		</>
 	);
 };
-export default Post;
+export default React.memo(Post);
 const Body = styled.div`
 	gap: 30px;
 `;
@@ -45,7 +45,14 @@ const Container = styled.div<{ isWhite?: boolean; isCompleted?: boolean }>`
 	background-color: ${(props) => (props.isWhite ? '#ffffff' : `#00000030`)};
 	font-size: small;
 	padding: 20px;
-	${(props) => props.isWhite && `color:gray;`};
+	${(props) =>
+		props.isWhite &&
+		`color:gray;
+		#label{
+			color:gray;
+			background-color:lightgray;
+		}
+	`};
 	${(props) =>
 		props.isCompleted &&
 		`

@@ -24,7 +24,7 @@ const OttForm: React.FC<props> = ({ platform, onClickHandler }) => {
 		</Container>
 	);
 };
-export default OttForm;
+export default React.memo(OttForm);
 const OttWrapper = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 250px);

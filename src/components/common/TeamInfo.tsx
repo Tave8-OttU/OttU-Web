@@ -1,17 +1,18 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import { BlueLabel } from './Labels';
+import * as React from "react";
+import styled from "styled-components";
+import { BlueLabel } from "./Labels";
 interface props {
+	team: string;
 	people: number;
 	price: number;
 }
-const TeamInfo: React.FC<props> = ({ people, price }) => {
+const TeamInfo: React.FC<props> = ({ team, people, price }) => {
 	return (
 		<Container className="row-container">
-			<Blue>{'OttU팀'}</Blue>
+			<Blue>{team + "팀"}</Blue>
 			<span>{people}인 팀</span>
-			<Blue>{'→'}</Blue>
-			<BlueLabel>{price.toLocaleString('ko-kr')}원</BlueLabel>
+			<Blue>{"→"}</Blue>
+			<BlueLabel>{price.toLocaleString("ko-kr")}원</BlueLabel>
 		</Container>
 	);
 };

@@ -1,8 +1,8 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import { ott } from '../../pages/MyOtt';
-import DateContainer from './DateContainer';
-import PriceContainer from './PriceContainer';
+import * as React from "react";
+import styled from "styled-components";
+import DateContainer from "./DateContainer";
+import { ott } from "./MainContainer";
+import PriceContainer from "./PriceContainer";
 interface props {
 	ottObj: ott;
 }
