@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/OttU-Web/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/OttU-Web/static/js/main.80a7efd4.chunk.js",
+    "main.js.map": "/OttU-Web/static/js/main.80a7efd4.chunk.js.map",
+    "runtime-main.js": "/OttU-Web/static/js/runtime-main.9380dad8.js",
+    "runtime-main.js.map": "/OttU-Web/static/js/runtime-main.9380dad8.js.map",
+    "static/js/2.b66c9342.chunk.js": "/OttU-Web/static/js/2.b66c9342.chunk.js",
+    "static/js/2.b66c9342.chunk.js.map": "/OttU-Web/static/js/2.b66c9342.chunk.js.map",
+    "index.html": "/OttU-Web/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/OttU-Web/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.b66c9342.chunk.js.LICENSE.txt": "/OttU-Web/static/js/2.b66c9342.chunk.js.LICENSE.txt",
+    "static/media/CoupangPlay.png": "/OttU-Web/static/media/CoupangPlay.c1f161a2.png",
+    "static/media/Disney+.png": "/OttU-Web/static/media/Disney+.0edb83a6.png",
+    "static/media/Disney+_white.png": "/OttU-Web/static/media/Disney+_white.d2c72278.png",
+    "static/media/Netflix.png": "/OttU-Web/static/media/Netflix.4a9d8652.png",
+    "static/media/Wavve.png": "/OttU-Web/static/media/Wavve.65f8e607.png",
+    "static/media/Wavve_white.png": "/OttU-Web/static/media/Wavve_white.e1e3bcd2.png",
+    "static/media/alert.png": "/OttU-Web/static/media/alert.e2c9d5cd.png",
+    "static/media/profile.png": "/OttU-Web/static/media/profile.2dc9a60c.png",
+    "static/media/randing.png": "/OttU-Web/static/media/randing.7cd40848.png",
+    "static/media/randing2.png": "/OttU-Web/static/media/randing2.955ffefe.png",
+    "static/media/randingText.png": "/OttU-Web/static/media/randingText.e194842c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9380dad8.js",
+    "static/js/2.b66c9342.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.80a7efd4.chunk.js"
+  ]
+}
