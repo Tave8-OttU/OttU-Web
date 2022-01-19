@@ -23,12 +23,15 @@ const AddForm: React.FC<props> = ({ onSubmit, isAddOtt, setIsCheck }) => {
 	});
 	const [date, setDate] = React.useState(0);
 
-	const onClickHandler = (event: React.MouseEvent, type: string) => {
-		const {
-			currentTarget: { id },
-		} = event;
-		setPostObj((p) => ({ ...p, [type]: parseInt(id) }));
-	};
+	const onClickHandler = React.useCallback(
+		(event: React.MouseEvent, type: string) => {
+			const {
+				currentTarget: { id },
+			} = event;
+			setPostObj((p) => ({ ...p, [type]: parseInt(id) }));
+		},
+		[]
+	);
 
 	return (
 		<Form onSubmit={(e) => onSubmit(e, postObj, date)}>

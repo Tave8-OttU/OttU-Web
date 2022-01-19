@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { useNavigate } from 'react-router';
-import styled from 'styled-components';
-import { ott } from '../../pages/MyOtt';
-import OttImg from '../common/OttImg';
+import * as React from "react";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
+import OttImg from "../common/OttImg";
+import { ott } from "./MainContainer";
 interface props {
 	ott?: string;
 	ottList: ott[];
@@ -19,7 +19,7 @@ const OttContainer: React.FC<props> = ({ ott, ottList }) => {
 	return (
 		<Wrapper>
 			<OttBox id={ott}>
-				<OttImg ott={ott ? ott : ''} width="200px" />
+				<OttImg ott={ott ? ott : ""} width="200px" />
 			</OttBox>
 			{ottList.map(
 				(it) =>

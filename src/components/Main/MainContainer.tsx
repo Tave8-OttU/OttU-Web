@@ -14,13 +14,13 @@ const MainContainer: React.FC = () => {
 
 	const onClickHandler = (
 		event: React.MouseEvent,
-		myott: boolean,
+		isMyott: boolean,
 		ott: string
 	) => {
 		const {
 			currentTarget: { id },
 		} = event;
-		myott
+		isMyott
 			? navigate(`/myott/${ott}`)
 			: navigate(`/recruit/${ott}?idx=${parseInt(id) + 1}`);
 	};
@@ -34,11 +34,11 @@ const MainContainer: React.FC = () => {
 
 	return (
 		<Container>
-			{Otts.map((ott, idx) => (
+			{Otts.map((ott, ottIdx) => (
 				<>
 					<OttContainer
 						onClick={(e) => onClickHandler(e, myOttList.includes(ott), ott)}
-						id={idx + ''}
+						id={ottIdx + ''}
 						isNone={!myOttList.includes(ott)}
 					>
 						<Guide isMyOtt={myOttList.includes(ott)} ott={ott} />

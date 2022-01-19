@@ -1,10 +1,10 @@
-import { recruitPost } from '../components/Recruit/Content';
+import { recruitPost } from "../components/Recruit/Content";
 
-const SET_POSTLIST = 'recruitList/SET_POSTLIST';
-const SET_CURR = 'recruitList/SET_CURR';
-const APPLY = 'recruitList/APPLY';
-const ACCEPT = 'recruitList/ACCEPT';
-const COMPLETION = 'recruitList/COMPLETION';
+const SET_POSTLIST = "recruitList/SET_POSTLIST";
+const SET_CURR = "recruitList/SET_CURR";
+const APPLY = "recruitList/APPLY";
+const ACCEPT = "recruitList/ACCEPT";
+const COMPLETION = "recruitList/COMPLETION";
 
 export interface recuritObj {
 	postObj: recruitPost;
@@ -15,6 +15,7 @@ const initialState = {
 	postList: [],
 	currentIdx: 0,
 };
+
 export const setPostList = (postList: recuritObj[]) => {
 	return {
 		type: SET_POSTLIST,
@@ -27,7 +28,7 @@ export const setCurrIdx = (idx: number) => {
 		idx,
 	};
 };
-export const participate = (idx: number) => {
+export const apply = (idx: number) => {
 	return {
 		type: APPLY,
 		idx,

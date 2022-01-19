@@ -10,6 +10,7 @@ const CheckBoxForm: React.FC<props> = ({ genreArr, setGenreArr }) => {
 		const {
 			currentTarget: { id },
 		} = event;
+
 		if (!genreArr.includes(parseInt(id))) {
 			genreArr.length < 3 && setGenreArr((p) => [...p, parseInt(id)]);
 		} else {

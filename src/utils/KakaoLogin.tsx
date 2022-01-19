@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getKakaoTokenHandler, LoginHandler } from '../apis/api/user';
-/* 카카오 로그인 token 발급 REST API */
+
 export const kakaoLoginHandler = async (code: string) => {
 	const data: any = {
 		grant_type: 'authorization_code',
@@ -30,13 +30,7 @@ export const autoLoginHandler = async () => {
 };
 export const kakaoLogoutHandler = async () => {
 	return new Promise((resolve, rejects) => {
-		axios
-			.get(
-				`https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_REST_KEY}&logout_redirect_uri=http://localhost:3000/`
-			)
-			.then((res) => {
-				localStorage.clear();
-				resolve({ status: 200 });
-			});
+		localStorage.clear();
+		resolve({ status: 200 });
 	});
 };

@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import Gage from './Gage';
 interface props {
 	reliability: number;
+	isFirst: boolean;
 }
-const LevelBox: React.FC<props> = ({ reliability }) => {
+const LevelBox: React.FC<props> = ({ reliability, isFirst }) => {
 	return (
 		<Container className="col-container">
 			<span>오뜨 level</span>
 			<Wrapper className="row-container">
-				<Gage gage={reliability * 10} />
+				<Gage gage={isFirst ? 0 : reliability * 10} />
 				<h3>{reliability}</h3>
 			</Wrapper>
 		</Container>

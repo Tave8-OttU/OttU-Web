@@ -1,4 +1,4 @@
-import { ott } from '../../pages/MyOtt';
+import { ott } from "../../components/Myott/MainContainer";
 
 export const getMyOttListName = async (raw: any) => {
 	try {

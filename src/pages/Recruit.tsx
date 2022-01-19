@@ -27,9 +27,9 @@ const Body = styled.div`
 	padding: 0px 50px;
 	gap: 50px;
 `;
-const Label = styled.div`
+const Label = React.memo(styled.div`
 	background-color: #00000020;
 	margin: 20px 50px;
 	padding: 30px;
 	border-radius: 10px;
-`;
+`);

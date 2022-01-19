@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { evalueTeamHandler, getMemberHandler } from '../../apis/api/team';
-import { RootState } from '../../modules';
-import { BlueBtn } from '../common/Buttons';
-import Modal from '../common/Modal';
-import EvaluationHead from './EvaluationHead';
-import MemberBox from './MemberBox';
+import * as React from "react";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import { evalueTeamHandler, getMemberHandler } from "../../apis/api/team";
+import { RootState } from "../../modules";
+import { BlueBtn } from "../common/Buttons";
+import Modal from "../common/Modal";
+import EvaluationHead from "./EvaluationHead";
+import MemberBox from "./MemberBox";
 interface props {
 	teamIdx: number;
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,6 +14,7 @@ interface props {
 }
 const EvaluationBox: React.FC<props> = ({ teamIdx, setIsOpen, ott }) => {
 	const { userObj } = useSelector((state: RootState) => state.user);
+
 	const [memberList, setMemberList] = React.useState<member[]>([]);
 	const [reliability, setReliability] = React.useState<number[]>([]);
 	React.useEffect(() => {
@@ -43,7 +44,7 @@ const EvaluationBox: React.FC<props> = ({ teamIdx, setIsOpen, ott }) => {
 					))}
 				</Wrapper>
 				<Wrapper className="row-container">
-					<BlueBtn style={{ color: 'white' }} onClick={onClickHandler}>
+					<BlueBtn style={{ color: "white" }} onClick={onClickHandler}>
 						확인
 					</BlueBtn>
 				</Wrapper>

@@ -15,7 +15,7 @@ const ProfileModal: React.FC<props> = ({ setIsOpen, userObj }) => {
 				<Head className="row-container">
 					<h2>{userObj.nickname}</h2>
 				</Head>
-				<LevelBox reliability={userObj.reliability} />
+				<LevelBox reliability={userObj.reliability} isFirst={userObj.isFirst} />
 				<GenreBox genres={userObj.genres} />
 			</Container>
 		</Modal>

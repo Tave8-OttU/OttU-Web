@@ -11,9 +11,9 @@ const RecruitInfo: React.FC<props> = ({ postObj }) => {
 	return (
 		<Container className="row-container">
 			{postObj.isCompleted ? (
-				<DarkGrayLabel>모집 완료</DarkGrayLabel>
+				<DarkGrayLabel id="label">모집 완료</DarkGrayLabel>
 			) : (
-				<BlueLabel>모집 중</BlueLabel>
+				<BlueLabel id="label">모집 중</BlueLabel>
 			)}
 			<Count choiceNum={postObj.choiceNum} headcount={postObj.headcount} />
 		</Container>

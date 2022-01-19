@@ -18,4 +18,4 @@ const OttImg: React.FC<props> = ({ ott, width, height, isWhite }) => {
 		/>
 	);
 };
-export default OttImg;
+export default React.memo(OttImg);
